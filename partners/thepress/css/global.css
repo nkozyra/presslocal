@@ -29,7 +29,6 @@
 }
 
 .mytrip-item-row {
-
   padding-bottom: 40px;
 }
 
@@ -862,6 +861,7 @@ a:hover, a:active, a:focus {
   background: url('../img/partner-badge.png') center center no-repeat;
   background-size: 23px 23px;
   opacity: 0.5;
+  margin-top: 8px;
 }
 
 .partner-badge:before {
@@ -1663,8 +1663,12 @@ nav.solid.affix .nav-container ul.main-nav li a {
   margin-top: 0;
 }
 
+.mobile-dropdown .search-bar form {
+  padding: 0px 10px;
+}
+
 .mobile-dropdown .search-bar input {
-  width: 70%;
+  width: 80%;
   background-color: transparent;
   padding: 5px 5px 5px 10px;
   border: none;
@@ -1751,6 +1755,18 @@ nav.solid.affix .nav-container ul.main-nav li a {
 
 .mobile-dropdown .login-state .login-state-container .login-status {
   font-size: 12px;
+}
+
+@media (max-width: 768px) {
+  .mobile-dropdown.active {
+	  overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 160px;
+  }
+  .mobile-dropdown .login-state {
+	  position: fixed;
+	  bottom: 0px;
+  }
 }
 
 /*
@@ -3031,6 +3047,7 @@ Global Modules
 
 .quad-column .quad-block .event-date {
   font-size: 34px;
+  font-size: 24px;
   color: #fff;
   z-index: 9999;
   pointer-events: none;
@@ -3139,7 +3156,8 @@ Global Modules
     margin: 0 auto 13px auto;
   }
   .quad-column .quad-block .event-date {
-    font-size: 34px;
+    font-size: 32px;
+    line-height: 1em;
   }
 }
 
@@ -3203,6 +3221,18 @@ Global Modules
 }
 
 /* Directory Header */
+
+section .directory-header,
+.container.directory-header {
+	padding-top: 80px;
+}
+
+@media (max-width: 768px) {
+	section .directory-header,
+	.container.directory-header {
+		padding-top: 0px;
+	}
+}
 
 .directory-header .sub-header {
   text-align: center;
@@ -3573,6 +3603,10 @@ Global Modules
   padding-bottom: 0;
 }
 
+.directory-alt .mytrip-item-row:nth-last-of-type(1) .directory-list .directory-item .item-container {
+	border-bottom: 0;
+}
+
 .directory-alt .directory-list .directory-item .item-map {
   text-align: right;
 }
@@ -3779,14 +3813,7 @@ Sign In Modal
 }
 
 .modal-dialog {
-  width: 100%;
   max-width: 700px;
-  top: 50%;
-  left: 50%;
-  right: auto;
-  transform: translate(-50%, -50%) !important;
-  position: absolute;
-  margin: 0;
 }
 
 .modal-dialog .modal-header {
@@ -3836,10 +3863,14 @@ Sign In Modal
   text-decoration: underline !important;
 }
 
+.modal-backdrop {
+	z-index: 999999;
+}
+
 @media (max-width: 768px) {
-  .modal-dialog {
-    top: 170px;
-    margin-top: 75px;
+  .modal-dialog {}
+  .modal-dialog .modal-content .modal-body {
+	  width: 90%;
   }
 }
 

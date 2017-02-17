@@ -490,32 +490,40 @@ $('#toast').html('Added to <a href="/my-trip">My Trip</a>');
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-7 featured-image">
+      <div class="col-md-8 featured-image">
         <img src="/image?method=image.icrop&context=event.yield&w=1200&h=800&id=12195">
       </div>
-      <div class="col-sm-5 header-details">
-        <article class="address hidden-xs">
-          <p class="sans brown">5:00 pm</p>
-        </article>
-        <article class="hours hidden-xs">
-          <h4 class="sans-bold brown sidebar-title">Back Room Wines</h4>
-          <p class="sans brown">1000 Main St, Napa, CA</p>
-          <div class="single-sidebar">
-            <div id="event-map" style="width:100%;height:250px;"></div>
-          </div>          
-          <div class="status hidden-xs"><span class="sans-bold brown"></span></div>
-        </article>
-        <div class="toolbar-options">
-          <a data-type="events" data-id="18131" data-name="A Taste Tour of Spain" data-longitude="-122.285" data-address="1000 Main St, Napa, CA" data-latitude="38.2994"  class="button button-xs bg-brown sans-bold hidden-xs trip-item-trigger">Add to Trip</a>
-          <ul>
-            <li class="hidden-sm hidden-md hidden-lg"><a href="#" class="button button-xs sans-bold bg-brown">Add to Trip</a></li>
-
-            <li class="social-label lightBrown hidden-xs">share</li>
-            <li class="social hidden-xs"><a class="brown" href="https://twitter.com/home?status=57ea88bcb96ef:%20http://thepress.pointslocal.com/event/a-taste-tour-of-spainfebruary-10-2017589755647ee50"><i class="fa fa-twitter"></i></a></li>
-            <li class="social hidden-xs"><a class="brown" href="http://www.facebook.com/sharer.php?u=http://thepress.pointslocal.com/event/a-taste-tour-of-spainfebruary-10-2017589755647ee50"><i class="fa fa-facebook-square"></i></a></li>
-          </ul>
-        </div>
+      <div class="col-md-4 header-details">
+	      <div class="row">
+		      <div class="col-lg-12 col-md-12 col-sm-12 header-details-meta">
+		        <article class="address">
+		          <p class="sans brown">5:00 pm</p>
+		        </article>
+		        <article class="hours">
+		          <h4 class="sans-bold brown sidebar-title">Back Room Wines</h4>
+		          <p class="sans brown">1000 Main St, Napa, CA</p>                  
+		          <div class="status hidden-xs"><span class="sans-bold brown"></span></div>
+		        </article>
+		        <div class="toolbar-options">
+		          <a data-type="events" data-id="18131" data-name="A Taste Tour of Spain" data-longitude="-122.285" data-address="1000 Main St, Napa, CA" data-latitude="38.2994"  class="button button-xs bg-brown sans-bold hidden-xs trip-item-trigger">Add to Trip</a>
+		          <ul>
+		            <li class="hidden-sm hidden-md hidden-lg"><a href="#" class="button button-xs sans-bold bg-brown">Add to Trip</a></li>
+		          </ul>
+		          <ul class="socials">
+		            <li class="social-label lightBrown">share</li>
+		            <li class="social"><a class="brown" href="https://twitter.com/home?status=57ea88bcb96ef:%20http://thepress.pointslocal.com/event/a-taste-tour-of-spainfebruary-10-2017589755647ee50"><i class="fa fa-twitter"></i></a></li>
+		            <li class="social"><a class="brown" href="http://www.facebook.com/sharer.php?u=http://thepress.pointslocal.com/event/a-taste-tour-of-spainfebruary-10-2017589755647ee50"><i class="fa fa-facebook-square"></i></a></li>
+		          </ul>
+		        </div>
+		      </div>
+		      <div class="col-lg-11 col-md-11 col-sm-6 header-details-map">
+			      <div class="single-sidebar">
+	            <div id="event-map" style="width:100%;height:250px;"></div>
+	          </div>
+		      </div>
+	      </div>
       </div>
+      <div class="clearfix"></div>
     </div>
   </div>
 </header>

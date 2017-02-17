@@ -68,7 +68,6 @@ main {
 
 .map-filters {
   width: 100%;
-  min-width: 900px;
   height: 75px;
   margin-top: 52px;
   position: absolute;
@@ -422,7 +421,7 @@ main {
 
 @media (max-width: 992px) {
   .map-filters ul.map-dropdowns > li a {
-    font-size: 16px;
+    font-size: 18px;
   }
   .map-filters ul.map-dropdowns > li {
     margin-right: 10px;
@@ -431,7 +430,8 @@ main {
     margin-left: 5px;
   }
   .map-filters ul.map-dropdowns > li.search {
-    margin-right: 15px;
+    margin-right: 20px;
+    margin-left: 5px;
   }
   .map-filters ul.map-dropdowns > li.search .fa-close {
     font-size: 18px;

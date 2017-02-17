@@ -173,11 +173,20 @@ $('#toast').html('Added to <a href="/my-trip">My Trip</a>');
 
 <!-- Mobile Dropdown Menu -->
 <nav class="mobile-dropdown hidden-sm hidden-md hidden-lg">
+	<div class="mobile-trips-container" style="display:none;">
+	  <div class="row">
+	    <div class="col-xs-6"><a href="/my-trips" >My Trips</a></div>
+	    <div class="col-xs-6"><a class="mobile-trips-container-logout pull-right" href="#" onclick="gigyaLogout();" >Log Out</a></div>
+	    <div class="col-xs-12" style="padding: 0px;">
+	      <div id="mobile-trips-container-message"></div>
+	      <ul id="mobile-trips-container-trips"></ul>
+	    </div>
+	  </div>
+  </div>
   <div class="search-bar">
     <form class="form-inline" action="/search" role="form" method="post">
       <button type="submit"><i class="fa fa-search"></i></button>
       <input name="search" type="text" placeholder="Search">
-      
     </form>
   </div>
   <div class="dropdown-nav">
@@ -187,20 +196,7 @@ $('#toast').html('Added to <a href="/my-trip">My Trip</a>');
       <li><a href="/stories" >Stories</a></li>
       <li><a href="/wineries" >Places</a></li>
       <li><a href="/wine-events" >Events</a></li>
-
     </ul>
-  </div>
-  <div class="mobile-trips-container" style="display:none;">
-  <div class="row">
-    <div class="col-xs-6"><a href="/my-trips" >My Trips</a></div>
-    <div class="col-xs-6"><a class="mobile-trips-container-logout pull-right" href="#" onclick="gigyaLogout();" >Log Out</a></div>
-    <div class="col-xs-12" style="padding: 0px;">
-      <div id="mobile-trips-container-message"></div>
-      <ul id="mobile-trips-container-trips">
-
-      </ul>
-    </div>
-  </div>
   </div>
   <div class="login-state">
     <div class="login-state-container">

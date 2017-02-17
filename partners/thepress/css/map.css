@@ -101,6 +101,7 @@ main {
   text-align: center;
   display: inline-block;
   position: relative;
+  padding-left: 10px;
 }
 
 .map-filters .dropdowns input {
@@ -169,7 +170,7 @@ main {
 }
 
 .map-filters ul.map-dropdowns > li.search {
-  margin-right: 25px;
+  margin-right: 38px;
 }
 
 .map-filters ul.map-dropdowns > li.search .fa-close {
@@ -491,7 +492,7 @@ main {
   width: 100%;
   min-height: 240px;
   background-color: #fff;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   position: relative;
   padding: 15px;
   padding-bottom: 5px; /* nk, tightens cards */
@@ -505,7 +506,7 @@ background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNv
     text-align: center;
     display: inline-block;
     color: #fff;
-    vertical-align: middle;
+    vertical-align: top;
     font-family: europa, Helvetica, arial;
     font-weight: bold;
     font-size: 13px;
@@ -531,7 +532,7 @@ background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNv
 }
 
 .hud .module.featured {
-  margin-bottom: 90px;
+  margin-bottom: 80px;
   min-height: 250px;
 }
 
@@ -756,7 +757,7 @@ background-color: #82924e;
 /* HUD Tier 2 Module */
 
 .hud .module.tier2 {
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 .hud .module.tier2 .tier-title h2 {

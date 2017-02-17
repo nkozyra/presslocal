@@ -1617,8 +1617,9 @@ nav.solid.affix .nav-container ul.main-nav li a {
 .mobile-trips-container {
   color: #fff;
   padding: 15px;
-  margin-top: 15px;
-  border-top: 2px solid rgba(255,255,255,.5);
+  /*margin-top: 15px;*/
+  /*border-top: 2px solid rgba(255,255,255,.5);*/
+  border-bottom: 2px solid rgba(255,255,255,.5);
 }
 #mobile-trips-container-trips li {
   padding-top: 10px;
@@ -1659,8 +1660,9 @@ nav.solid.affix .nav-container ul.main-nav li a {
 }
 
 .mobile-dropdown .search-bar {
-  text-align: center;
   margin-top: 0;
+  padding: 10px 0px 0px;
+  text-align: left;
 }
 
 .mobile-dropdown .search-bar form {

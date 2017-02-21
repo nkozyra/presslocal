@@ -682,7 +682,7 @@ $('#toast').html('Added to <a href="/my-trip">My Trip</a>');
               <a href="/wine-event/{{guid}}"><img src="/image?method=image.icrop&context=event.yield&w=300&h=200&id={{parent_id}}&trim=1" alt=""></a>
             </div>
             <div class="col-xs-5 directory-info">
-              <h3 class="sans-bold brown"><span>{{counter}}</span><a href="/wine-event/{{guid}}">{{title}}</a></h3><span style="display:none;" class="partner-badge"></span>
+              <h3 class="serif brown"><span class="hidden-sm hidden-xs">{{counter}}</span><a href="/wine-event/{{guid}}">{{title}}</a></h3><span style="display:none;" class="partner-badge"></span>
               <h4 class="sans-bold brown">{{start_time}}</h4>
               <div class="address hidden-xs">
                 <h4 class="sans-bold brown">{{venue_name}}</h4>
@@ -703,7 +703,7 @@ $('#toast').html('Added to <a href="/my-trip">My Trip</a>');
               <div class="directory-buttons hidden-sm hidden-md hidden-lg">
                 <ul>
 
-                  <li><a href="#" class="sans-bold brown" style="display:none'"><i class="fa fa-map-o"></i> Map</a></li>
+                  <li><a href="#" class="sans-bold brown" style="display:none;"><i class="fa fa-map-o"></i> Map</a></li>
                 </ul>
               </div>
             </div>
@@ -771,11 +771,8 @@ $('#toast').html('Added to <a href="/my-trip">My Trip</a>');
 
 <section class="directory container ">
       <div class="row">
-        <div class="col-sm-9 directory-list">
-
-
-        </div>
-        <div class="col-sm-3 directory-map hidden-xs"  style="overflow:hidden;">
+        <div class="col-sm-12 col-md-9 col-lg-9 directory-list"></div>
+        <div class="col-sm-3 directory-map hidden-sm hidden-xs"  style="overflow:hidden;">
           <div class="rail-map events-map" id="events-map" style="width:280px;height:400px;"></div>
         </div>
       </div>

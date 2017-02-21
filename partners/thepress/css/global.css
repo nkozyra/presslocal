@@ -353,7 +353,9 @@ background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNv
   display:none !important;
 }
 .fixed-tools .dropdown.login a {
-      padding: 10px 20px;
+  padding: 10px 20px;
+  top: 2px;
+  position: relative;
 }
 .editable {
   border-bottom: 1px dotted #544741;
@@ -1049,6 +1051,7 @@ nav.affix {
   transform: translate3d(0, 0, 0);
   background-color: #fff;
   padding: 10px 0;
+  min-height: 52px;
 }
 
 .nav-wrapper {
@@ -1130,7 +1133,8 @@ nav.nav-sm {
   left: 0;
   z-index: 999999;
   background-color: #fff;
-  padding: 10px 0 ;
+  padding: 10px 0;
+  min-height: 52px;
 }
 
 nav.nav-sm.affix-top {
@@ -1182,12 +1186,14 @@ nav.nav-sm .nav-container ul.main-nav li {
 nav.nav-sm .nav-container ul.main-nav li a {
   color: #544741 !important;
   padding: 5px 15px;
-  letter-spacing: 4px;
+  letter-spacing: 2px;
 }
 
 @media (max-width: 992px) {
   nav.nav-sm .nav-container ul.main-nav li a {
     padding: 5px 10px;
+    letter-spacing: 1px;
+		font-size: 14px;
   }
 }
 
@@ -1250,7 +1256,7 @@ nav.affix .fixed-tools ul li a,
 nav.nav-sm .fixed-tools ul li a {
   color: #544741 !important;
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 11px;
 }
 
 nav.affix .fixed-tools ul li a:hover,
@@ -1266,7 +1272,6 @@ nav.nav-sm .fixed-tools ul li a i {
 /* NK */
 nav.affix .fixed-tools ul li.auth,
 nav.nav-sm .fixed-tools ul li.auth {
-
   padding-left: 15px;
   padding-right: 15px;
   font-size: 14px;
@@ -1306,7 +1311,7 @@ nav.affix .fixed-tools ul li.divider, nav.nav-sm .fixed-tools ul li.divider {
 }
 nav.affix .fixed-tools ul li.tripselect,
 nav.nav-sm .fixed-tools ul li.tripselect {
-  padding-right: 15px;
+  padding-right: 10px;
   line-height:26px;
 }
 .tripcount, .tripname {
@@ -1338,17 +1343,17 @@ nav.nav-sm .fixed-tools ul li.tripselect a{
 
 nav.affix .fixed-tools ul li.mytrips a,
 nav.nav-sm .fixed-tools ul li.mytrips a {
-    text-transform: none;
-  font-size: 16px;
+  text-transform: none;
+  font-size: 14px;
   font-weight: bold;
 }
 
 nav.affix .fixed-tools ul li.mytrips,
 nav.nav-sm .fixed-tools ul li.mytrips,  ul li.mytrips {
   line-height: 26px;
-border-left: 1px solid #333;
-    padding-left: 15px;  
-    font-weight: bold;
+	border-left: 1px solid #333;
+  padding-left: 10px;  
+  font-weight: bold;
 }
 
 .home-nav .logo-container ul li.mytrips {
@@ -1361,6 +1366,7 @@ border-left: 1px solid #333;
 
 .home-nav .dropdown-menu .tripname {
     color: #544741;
+    font-size: 14px;
 }
 
 .home-nav .logo-container .tripcount {
@@ -1457,6 +1463,13 @@ nav.solid .logo-container .tools ul li.chronicle-small img {
   -webkit-filter: brightness(0%);
 }
 
+@media (max-width: 992px) {
+	nav.affix .fixed-tools ul li.chronicle,
+	nav.nav-sm .fixed-tools ul li.chronicle {
+	  display: none;
+	}
+}
+
 /* Mobile Hamburger Menu Button */
 
 nav a.toggle-nav {
@@ -1524,7 +1537,7 @@ nav .nav-container ul.main-nav li:not(.my-trip-inactive):last-child {
 
 nav .nav-container ul.main-nav li a {
   text-transform: uppercase;
-  letter-spacing: 7.56px;
+  letter-spacing: 4px;
   padding: 15px 25px;
   font-size: 16px;
   display: inline-block;
@@ -1546,7 +1559,8 @@ nav.solid.affix .nav-container ul.main-nav li a {
 @media (max-width: 992px) {
   nav.affix .nav-container ul.main-nav li a {
     padding: 5px 10px;
-    letter-spacing: 4px;
+    letter-spacing: 1px !important;
+		font-size: 14px;
   }
   .nav-wrapper {
     max-width: 100%;
@@ -2367,7 +2381,7 @@ Global Modules
   display: block;
   display: -webkit-box;
   max-height: 102.2px;
-  margin: 0 auto 15px auto;
+  margin: 0 auto 40px auto;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
@@ -3792,7 +3806,8 @@ section .directory-header,
 }
 
 .contributors .avatar-container p {
-  font-size: 20px;
+  font-size: 16px;
+  line-height: 1em;
 }
 
 @media (max-width: 768px) {

@@ -17,7 +17,7 @@
     <meta name="description" content="">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/partners/thepress/css/global.css?x=58d032c13e9b1">
+    <link rel="stylesheet" href="/partners/thepress/css/global.css?x=58d02ce33317d">
     <link rel="stylesheet" href="/partners/thepress/css/index.css">
 
     <SCRIPT type="text/javascript" lang="javascript" src="http://cdn.gigya.com/JS/gigya.js?apikey=3_BMFZOCwXDrSMoeTYN2uiVIBZhHski0qbm2oj7S3NL2gKLHcAjq-sx3cuKnLVg_pN"></SCRIPT>
@@ -85,83 +85,78 @@ $('#toast').html('Added to <a href="/wine-my-trip">My Trip</a>');
 </script>
 
   <!-- nav area -->
-  <!-- #268 INTERNAL HEADER -->
-<nav class="solid affix-top" data-spy="affix" data-offset-top="90">
+  <!-- #256 LARGE NAV -->
+<nav class="clear home-nav" data-spy="affix" data-offset-top="90">
   <a href="#" class="toggle-nav hidden-lg hidden-md hidden-sm"><i class="fa fa-bars"></i><i class="fa fa-close hidden"></i></a>
-  <a href="/map" class="map-button hidden-lg hidden-md hidden-sm"><img class="map-icon" src="/partners/thepress/img/icons/map-icon.png" alt="Go to Map"></a>
-
+  <a href="/wine/map" class="map-button hidden-lg hidden-md hidden-sm"><img class="map-icon" src="/partners/thepress/img/icons/map-icon.png" alt="Go to Map"></a>
   <div class="container nav-wrapper">
-    <div class="row logo-container">
-      <div class="col-sm-12">
-        <a href="/wine">
-          <img class="logo hidden-xs" src="/partners/thepress/img/thepress-logo-brown.png" alt="The Press">
-          <img class="logo-mobile hidden-sm hidden-md hidden-lg" src="/partners/thepress/img/thepress-logo-mobile.png" alt="The Press">
-          <img class="logo-fixed" src="/partners/thepress/img/thepress-logo-sm.png" alt="The Press">
-          <img class="logo-stamp hidden-xs" src="/partners/thepress/img/thepress-stamp-lg-brown.png" alt="The Press">
-        </a>
-        <div class="tools">
-          <ul class="hidden-xs header-tools" style="display:none;" id="auth-container">
+      <div class="row logo-container">
+        <div class="col-sm-12">
+          <a href="/wine">
+            <img class="logo hidden-xs" src="/partners/thepress/img/thepress-logo.png" alt="The Press">
+            <img class="logo-mobile hidden-sm hidden-md hidden-lg" src="/partners/thepress/img/thepress-logo-mobile.png" alt="The Press">
+            <img class="logo-fixed" src="/partners/thepress/img/thepress-logo-sm.png" alt="The Press">
+            <img class="logo-stamp hidden-xs" src="/partners/thepress/img/thepress-stamp-lg.png" alt="The Press">
+          </a>
+          <div class="tools">
+            <ul class="hidden-xs"  style="display:none;" id="auth-container">
         <li class="signin header-tool" style="display:none;"><a href="#" class="button button-sm clear sans toggle-signin" data-toggle="modal" data-target="#signinModal">Sign In</a></li>
         <li class="dropdown tripselect header-tool">
-     
+ 
           <a href="#" style="display:none" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="tripcount"></span> <span class="tripname"></span></a>
           <ul class="dropdown-menu" id="dropdown-trip-selector">
 
                        
           </ul>
         </li>        
-
  
         <li class="dropdown login header-tool">
           <a href="#" class="button button-sm clear sans toggle-signin" data-toggle="modal" data-target="#signinModal">Sign In</a>
-          <a href="#" xnclick="gigyaLogout();" class="button button-sm clear sans toggle-signin dropdown-toggle toggle-signout " data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></a>
-          <ul class="dropdown-menu dropdown-menu-right" id="dropdown-trip-selector">
+          <a href="#" xnclick="gigyaLogout();" class="button button-sm clear sans dropdown-toggle toggle-signout " data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></a>
+          <ul class="dropdown-menu">
+
             <li><a href="/wine/my-trips">My Trips</a></li>
-            <li><a href="#" onclick="gigyaLogout();">Log Out</a></li>     
-          </ul>
+            <li><a href="#" onclick="gigyaLogout();">Log out</a></li>
+          </ul>          
         </li>
-            <li class="chronicle-small hidden-lg hidden-md header-tool"><a href="#"><img src="/partners/thepress/img/sfchronicle-logo.png" alt="SF Chronicle"></a></li>
-          </ul>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row nav-container hidden-xs">
-      <ul class="main-nav sans-bold">
-        <li><a href="/wine/map" class="nav-map">Map</a></li>
-        <li><a href="/wine/trips" class="nav-trips">Trips</a></li>
-        <li><a href="/wine/stories" class="nav-reviews">Stories</a></li>
-        <li><a href="/wine/wineries" class="nav-places">Directory</a></li>
-        <li><a href="/wine/events" class="nav-events">Events</a></li>
-        <li><a href="#" class="toggle-search"><i class="fa fa-search"></i></a></li>
+      <div class="row nav-container hidden-xs">
+        <ul class="main-nav sans-bold">
+          <li><a href="/wine/map">Map</a></li>
+          <li><a href="/wine/trips">Trips</a></li>
+          <li><a href="/wine/stories">Stories</a></li>
+          <li><a href="/wine/wineries">Directory</a></li>
+          <li><a href="/wine/events">Events</a></li>
+          <li><a href="#" class="toggle-search"><i class="fa fa-search"></i></a></li>
+        </ul>
+      </div>
+      <div class="fixed-tools">
+        <ul class="hidden-xs">
 
 
-      </ul>
-    </div>
-    <div class="fixed-tools">
-      <ul class="hidden-xs">
-        <li class="signin" style="display:none;"><a href="#" class="button button-sm clear sans toggle-signin" data-toggle="modal" data-target="#signinModal">Sign In</a></li>
-        <li class="dropdown tripselect ">
-          <a href="#" style="display:none" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="tripcount"></span> <span class="tripname"></span></a>
-          <ul class="dropdown-menu" id="dropdown-trip-selector">
-                  
-          </ul>
-        </li>        
 
-      
-        <li class="dropdown login ">
-          <a style="display:none;" href="#" class="button button-sm clear sans toggle-signin" data-toggle="modal" data-target="#signinModal">Sign In</a>
-          <a href="#" xnclick="gigyaLogout();" class="dropdown-toggle toggle-signout " data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></a>
-          <ul class="dropdown-menu dropdown-menu-right" id="dropdown-trip-selector">
-            <li><a href="/wine/my-trips">My Trips</a></li>
-            <li><a href="#" onclick="gigyaLogout();">Log Out</a></li>     
-          </ul>          
-        <li class="chronicle"><a href="#"><img src="/partners/thepress/img/sfchronicle-logo.png" alt="SF Chronicle"></a></li>
-      </ul>
-      <a href="#" class="toggle-nav hidden-lg hidden-md hidden-sm"><i class="fa fa-bars"></i></a>
+
+
+          <li class="signin"><a href="#" class="button button-sm clear sans toggle-signin" data-toggle="modal" data-target="#signinModal">Sign In</a></li>
+          <li class="dropdown login hidden">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><img src="/partners/thepress/img/login-pic.png"></a>
+            <ul class="dropdown-menu">
+              <li><a href="/wine/my-trip">Current Trip</a></li>
+              <li><a href="/wine/my-trips">Saved Trips</a></li>
+              <li><a href="#" onclick="gigyaLogout();">Log out</a></li>
+            </ul>
+          </li>
+          <li class="chronicle"><a href="#"><img src="/partners/thepress/img/sfchronicle-logo.png" alt="SF Chronicle"></a></li>
+        </ul>
+        <a href="#" class="toggle-nav hidden-lg hidden-md hidden-sm"><i class="fa fa-bars"></i></a>
+      </div>
     </div>
-  </div>
 </nav>
-<!-- 268 /INTERNAL HEADER -->
+
+<!-- #256 /LARGE NAV -->
 
 <!-- Mobile Dropdown Menu -->
 <nav class="mobile-dropdown hidden-sm hidden-md hidden-lg">
@@ -560,232 +555,437 @@ $('#toast').html('Added to <a href="/wine-my-trip">My Trip</a>');
 </div>
 
 
-  <section class="two-column two-column-divider no-padding container">
-      <div class="row">
-        <div class="col-sm-12">
-          <h2 class="divider divider-lg red"><span>Category Header</span></h2>
-        </div>
-      </div>
-      <div class="row sub-header">
-        <div class="col-sm-12">
-          <p class="sans brown">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eget lobortis enim. Quisque dolor felis, laoreet sit amet sollicitudin eu, auctor id lorem. Donec eros nisl, placerat quis ultricies quis, volutpat sit amet tellus.</p>
-        </div>
-      </div>
-      <div class="row scrollable" id="scroll1">
-        
-        <div class="col-sm-6 block-container">
-          <a href="/wine/story/syrah-the-winemaker-s-grape" class="block-padding" style="background: url('http://imagecdn-sfgate.pointslocal.com/image?method=image.icrop&context=stories&id=266&w=500&h=-1') center center no-repeat; background-size: cover;">
-            <div class="block-content vert-center">
-              <h3 class="white">Syrah: The Winemaker's Grape</h3>
-            </div>
-          </a>
-          <div class="block-text">
-            <div class="block-label lightBrown">Wine Facts</div>
-            <p class="sans brown"></p>
-          </div>
-        </div>
-        
-        
-        <div class="col-sm-6 block-container">
-          <a href="/wine/story/lauterbach-cellars" class="block-padding" style="background: url('http://imagecdn-sfgate.pointslocal.com/image?method=image.icrop&context=stories&id=265&w=500&h=-1') center center no-repeat; background-size: cover;">
-            <div class="block-content vert-center">
-              <h3 class="white">Lauterbach Cellars: Nitty-Gritty Winemaking</h3>
-            </div>
-          </a>
-          <div class="block-text">
-            <div class="block-label lightBrown">Winery Review</div>
-            <p class="sans brown"> If you simply want to taste a selection of current releases, they'll have them all lined up on a folding table ready and waiting. But this is your chance to learn the nitty gritty of the winemaking operation from a couple who've made this work a project of passion, not profit.</p>
-          </div>
-        </div>
-        
-      </div>
-    </section>
+    <!-- Header with Call to Action Module -->
+  <header class="header-lg" style="background: url('http://imagecdn-sfgate.pointslocal.com/partners/thepress/img/backgrounds/background-6-comp.jpg') center center no-repeat; background-size: cover;">
+    <div class="cta vert-center">
+      <h1>The San Francisco Chronicle's guide to The Best of Wine Country</h1>
+      <p>Explore the map. Read the reviews. Create your trip. </p>
+    </div>
+<div class="where-container">
+      <p class="sans-bold sans where-label hidden-sm hidden-md hidden-lg">Where to?</p>
+      <ul class="where-buttons">
+        <li class="hidden-xs">Where to?</li>
+        <li class="dropdown">
+          <a href="#" class="button button-lg bg-darkGray-alpha dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> Region <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="/map?neighborhood=napa">Napa</a></li>
+            <li><a href="/map?neighborhood=sonoma">Sonoma</a></li>
 
+          </ul>
+        </li>
+        <li class="dropdown" style="display:none;">
+          <a href="#" class="button button-lg bg-darkGray-alpha dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Sub Region<i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
 
-
-<section class="three-column stories container no-padding">
-      <div class="row scrollable" id="scroll2">
-        
-        <div class="col-sm-4 block-container the-column">
-          <a href="/wine/story/la-crema" class="block" style="background: url('http://imagecdn-sfgate.pointslocal.com/image?method=image.icrop&context=stories&id=264&w=500&h=-1') center center no-repeat; background-size: cover;"></a>
-          <div class="block-label lightBrown">Winery Review</div>
-          <div class="block-content">
-            <h4 class="sans-bold red"><a href="/wine/story/la-crema">La Crema: Scenic Saralee Vineyard</a></h4>
-            <span class="date darkOlive" style="display:none;">December 13, 2016</span>
-          </div>
-        </div>
-        
-        <div class="col-sm-4 block-container the-column">
-          <a href="/wine/story/paul-hobbs" class="block" style="background: url('http://imagecdn-sfgate.pointslocal.com/image?method=image.icrop&context=stories&id=263&w=500&h=-1') center center no-repeat; background-size: cover;"></a>
-          <div class="block-label lightBrown">Winery Review</div>
-          <div class="block-content">
-            <h4 class="sans-bold red"><a href="/wine/story/paul-hobbs">Paul Hobbs: Where tasting is an Event</a></h4>
-            <span class="date darkOlive" style="display:none;">December 13, 2016</span>
-          </div>
-        </div>
-        
-        <div class="col-sm-4 block-container the-column">
-          <a href="/wine/story/benovia-winery" class="block" style="background: url('http://imagecdn-sfgate.pointslocal.com/image?method=image.icrop&context=stories&id=262&w=500&h=-1') center center no-repeat; background-size: cover;"></a>
-          <div class="block-label lightBrown">Winery Review</div>
-          <div class="block-content">
-            <h4 class="sans-bold red"><a href="/wine/story/benovia-winery">Benovia: Cozy Fireside Wine Tasting</a></h4>
-            <span class="date darkOlive" style="display:none;">December 13, 2016</span>
-          </div>
-        </div>
-        
-        <div class="col-sm-4 block-container the-column">
-          <a href="/wine/story/banshee-wines-cool-kids-and-fine-wine" class="block" style="background: url('http://imagecdn-sfgate.pointslocal.com/image?method=image.icrop&context=stories&id=260&w=500&h=-1') center center no-repeat; background-size: cover;"></a>
-          <div class="block-label lightBrown">Winery Review</div>
-          <div class="block-content">
-            <h4 class="sans-bold red"><a href="/wine/story/banshee-wines-cool-kids-and-fine-wine">Banshee Wines: Cool Kids and Fine Wine</a></h4>
-            <span class="date darkOlive" style="display:none;">December 12, 2016</span>
-          </div>
-        </div>
-        
-        <div class="col-sm-4 block-container the-column">
-          <a href="/wine/story/rochioli-vineyards-and-winery" class="block" style="background: url('http://imagecdn-sfgate.pointslocal.com/image?method=image.icrop&context=stories&id=257&w=500&h=-1') center center no-repeat; background-size: cover;"></a>
-          <div class="block-label lightBrown">Winery Review</div>
-          <div class="block-content">
-            <h4 class="sans-bold red"><a href="/wine/story/rochioli-vineyards-and-winery">Rochioli: Family Winemaking History</a></h4>
-            <span class="date darkOlive" style="display:none;">November 23, 2016</span>
-          </div>
-        </div>
-        
-        <div class="col-sm-4 block-container the-column">
-          <a href="/wine/story/top-restaurants-in-yountville" class="block" style="background: url('http://imagecdn-sfgate.pointslocal.com/image?method=image.icrop&context=stories&id=256&w=500&h=-1') center center no-repeat; background-size: cover;"></a>
-          <div class="block-label lightBrown">Food</div>
-          <div class="block-content">
-            <h4 class="sans-bold red"><a href="/wine/story/top-restaurants-in-yountville">Top Restaurants in Yountville</a></h4>
-            <span class="date darkOlive" style="display:none;">November 17, 2016</span>
-          </div>
-        </div>
-        
-        <div class="col-sm-4 block-container the-column">
-          <a href="/wine/story/downtown-napa-s-sizzling-restaurant-scene" class="block" style="background: url('http://imagecdn-sfgate.pointslocal.com/image?method=image.icrop&context=stories&id=255&w=500&h=-1') center center no-repeat; background-size: cover;"></a>
-          <div class="block-label lightBrown">Food</div>
-          <div class="block-content">
-            <h4 class="sans-bold red"><a href="/wine/story/downtown-napa-s-sizzling-restaurant-scene">Downtown Napa's Sizzling Restaurant Scene</a></h4>
-            <span class="date darkOlive" style="display:none;">November 17, 2016</span>
-          </div>
-        </div>
-        
-        <div class="col-sm-4 block-container the-column">
-          <a href="/wine/story/about-napa-where-modern-american-wine-began" class="block" style="background: url('http://imagecdn-sfgate.pointslocal.com/image?method=image.icrop&context=stories&id=254&w=500&h=-1') center center no-repeat; background-size: cover;"></a>
-          <div class="block-label lightBrown">Napa</div>
-          <div class="block-content">
-            <h4 class="sans-bold red"><a href="/wine/story/about-napa-where-modern-american-wine-began">About Napa: Where Modern American Wine Began</a></h4>
-            <span class="date darkOlive" style="display:none;">November 17, 2016</span>
-          </div>
-        </div>
-        
-        <div class="col-sm-4 block-container the-column">
-          <a href="/wine/story/about-sonoma-county-the-land-of-endless-variety" class="block" style="background: url('http://imagecdn-sfgate.pointslocal.com/image?method=image.icrop&context=stories&id=253&w=500&h=-1') center center no-repeat; background-size: cover;"></a>
-          <div class="block-label lightBrown">Sonoma</div>
-          <div class="block-content">
-            <h4 class="sans-bold red"><a href="/wine/story/about-sonoma-county-the-land-of-endless-variety">About Sonoma County: The Land of Endless Variety</a></h4>
-            <span class="date darkOlive" style="display:none;">November 17, 2016</span>
-          </div>
-        </div>
-        
-        <div class="col-sm-4 block-container the-column">
-          <a href="/wine/story/where-to-eat-in-healdsburg" class="block" style="background: url('http://imagecdn-sfgate.pointslocal.com/image?method=image.icrop&context=stories&id=252&w=500&h=-1') center center no-repeat; background-size: cover;"></a>
-          <div class="block-label lightBrown">Food</div>
-          <div class="block-content">
-            <h4 class="sans-bold red"><a href="/wine/story/where-to-eat-in-healdsburg">Where to Eat in Healdsburg</a></h4>
-            <span class="date darkOlive" style="display:none;">November 14, 2016</span>
-          </div>
-        </div>
-        
-        <div class="col-sm-4 block-container the-column">
-          <a href="/wine/story/california-sparkling-wine" class="block" style="background: url('http://imagecdn-sfgate.pointslocal.com/image?method=image.icrop&context=stories&id=249&w=500&h=-1') center center no-repeat; background-size: cover;"></a>
-          <div class="block-label lightBrown">Wine Facts</div>
-          <div class="block-content">
-            <h4 class="sans-bold red"><a href="/wine/story/california-sparkling-wine">California Sparkling Wine: What You Need to Know Before Popping the Cork</a></h4>
-            <span class="date darkOlive" style="display:none;">November 4, 2016</span>
-          </div>
-        </div>
-        
-        <div class="col-sm-4 block-container the-column">
-          <a href="/wine/story/zinfandel" class="block" style="background: url('http://imagecdn-sfgate.pointslocal.com/image?method=image.icrop&context=stories&id=248&w=500&h=-1') center center no-repeat; background-size: cover;"></a>
-          <div class="block-label lightBrown">Wine Facts</div>
-          <div class="block-content">
-            <h4 class="sans-bold red"><a href="/wine/story/zinfandel">Zinfandel: California's Heritage Grape</a></h4>
-            <span class="date darkOlive" style="display:none;">October 28, 2016</span>
-          </div>
-        </div>
-        
-        <div class="col-sm-4 block-container the-column">
-          <a href="/wine/story/chardonnay" class="block" style="background: url('http://imagecdn-sfgate.pointslocal.com/image?method=image.icrop&context=stories&id=247&w=500&h=-1') center center no-repeat; background-size: cover;"></a>
-          <div class="block-label lightBrown">Wine Facts</div>
-          <div class="block-content">
-            <h4 class="sans-bold red"><a href="/wine/story/chardonnay">Chardonnay: The Great White Grape</a></h4>
-            <span class="date darkOlive" style="display:none;">October 17, 2016</span>
-          </div>
-        </div>
-        
-        <div class="col-sm-4 block-container the-column">
-          <a href="/wine/story/oshaughnessy-estate-winery" class="block" style="background: url('http://imagecdn-sfgate.pointslocal.com/image?method=image.icrop&context=stories&id=246&w=500&h=-1') center center no-repeat; background-size: cover;"></a>
-          <div class="block-label lightBrown">Winery Review</div>
-          <div class="block-content">
-            <h4 class="sans-bold red"><a href="/wine/story/oshaughnessy-estate-winery">O'Shaughnessy: Old World Impact, New World Wines</a></h4>
-            <span class="date darkOlive" style="display:none;">October 14, 2016</span>
-          </div>
-        </div>
-        
-        <div class="col-sm-4 block-container the-column">
-          <a href="/wine/story/about-a-grape-cabernet-sauvignon" class="block" style="background: url('http://imagecdn-sfgate.pointslocal.com/image?method=image.icrop&context=stories&id=245&w=500&h=-1') center center no-repeat; background-size: cover;"></a>
-          <div class="block-label lightBrown">Wine Facts</div>
-          <div class="block-content">
-            <h4 class="sans-bold red"><a href="/wine/story/about-a-grape-cabernet-sauvignon">Cabernet Sauvignon: American's Most Important Grape</a></h4>
-            <span class="date darkOlive" style="display:none;">October 13, 2016</span>
-          </div>
-        </div>
-        
-        <div class="col-sm-4 block-container the-column">
-          <a href="/wine/story/about-a-grape-pinot-noir" class="block" style="background: url('http://imagecdn-sfgate.pointslocal.com/image?method=image.icrop&context=stories&id=244&w=500&h=-1') center center no-repeat; background-size: cover;"></a>
-          <div class="block-label lightBrown">Wine Facts</div>
-          <div class="block-content">
-            <h4 class="sans-bold red"><a href="/wine/story/about-a-grape-pinot-noir">Pinot Noir: The Heartbreak Grape</a></h4>
-            <span class="date darkOlive" style="display:none;">October 12, 2016</span>
-          </div>
-        </div>
-        
-        <div class="col-sm-4 block-container the-column">
-          <a href="/wine/story/landmark-vineyards-hop-kiln-winery" class="block" style="background: url('http://imagecdn-sfgate.pointslocal.com/image?method=image.icrop&context=stories&id=242&w=500&h=-1') center center no-repeat; background-size: cover;"></a>
-          <div class="block-label lightBrown">Winery Review</div>
-          <div class="block-content">
-            <h4 class="sans-bold red"><a href="/wine/story/landmark-vineyards-hop-kiln-winery">Hop Kiln Winery: Taste Sonoma History</a></h4>
-            <span class="date darkOlive" style="display:none;">September 13, 2016</span>
-          </div>
-        </div>
-        
-        <div class="col-sm-4 block-container the-column">
-          <a href="/wine/story/ladera-vineyards" class="block" style="background: url('http://imagecdn-sfgate.pointslocal.com/image?method=image.icrop&context=stories&id=241&w=500&h=-1') center center no-repeat; background-size: cover;"></a>
-          <div class="block-label lightBrown">Winery Review</div>
-          <div class="block-content">
-            <h4 class="sans-bold red"><a href="/wine/story/ladera-vineyards">Ladera Vineyards: Bold Mountain Cabernets</a></h4>
-            <span class="date darkOlive" style="display:none;">September 13, 2016</span>
-          </div>
-        </div>
-        
-
-
-      </div>
-    </section>
+          </ul>
+        </li>
+        <li><a href="/map" class="button button-lg bg-olive-alpha">Show Map</a></li>
+      </ul>
+    </div>
+  </header>
 
   <div class="oldmain">
 
-  
+  <!-- TRIPS TEASER -->
+  <section class="callout-divider" style="background: url('http://imagecdn-sfgate.pointslocal.com/partners/thepress/img//backgrounds/illustration.png') center right no-repeat; background-size: 50%;">
+    <div class="container no-padding">
+      <div class="row">
+        <div class="col-sm-12">
+          <h2 class="divider divider-lg orange"><span>Trips</span></h2>
+  <img class="stamp" src="/partners/thepress/img/thepress-stamp-orange.png" alt="The Press">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="callout-content">
+            <h1 class="serif brown">Wine Country Trip Planner</h1>
+            <p class="medBrown">Follow recommended itineraries and customize your own</p>
+              <a href="/wine/trips" class="button button-cta serif bg-lightOrange">See All Trips</a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+        
+<!-- 102 -->
+
+    <!-- Three Column Block -->
+
+        
+  <section class="two-column container no-padding">
+      <div class="row scrollable" id="scroll1">
+        
+        <div class="col-sm-6 block-container">
+          <a href="/wine/trip/cruise-through-carneros" class="block" style="background: url('http://imagecdn-sfgate.pointslocal.com/img/icrop/370x240/package/349') center center no-repeat; background-size: cover;">
+            <div class="block-label white"></div>
+            <div class="block-content vert-center">
+              <h3 class="white">Cruise through Carneros</h3>
+            </div>
+          </a>
+          <div class="block-caption hidden-xs">
+            <p>Pinot Noir, Chardonnay, Sparkling Wine -- there's something for every palate in this dual Napa-Sonoma AVA</p>
+          </div>
+        </div>
+        <div class="col-sm-6 block-container" id="trip-teaser-sponsored">
+
+        </div>        
+        
+
+        <!-- Additional Mobile Scrolling Items (Appear in Three Column Block Below) -->
+        <!--
+        <div class="mobile-scroller hidden-sm hidden-md hidden-lg">
+          <div class="col-sm-6 block-container">
+            <a href="#" class="block" style="background: url('img/backgrounds/wine-couple.png') center center no-repeat; background-size: cover;">
+              <div class="block-label white">Napa</div>
+              <div class="block-content vert-center">
+                <h3 class="white">The name of a sponsored trip in Napa</h3>
+              </div>
+            </a>
+            <div class="block-caption hidden-xs">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vestibulum odio id nibh dapibus tincidunt. Phasellus scelerisque gravida posuere. <a href="#">Sponsored Content</a></p>
+            </div>
+          </div>
+          <div class="col-sm-6 block-container">
+            <a href="#" class="block" style="background: url('img/backgrounds/bonfire-group.png') center center no-repeat; background-size: cover;">
+              <div class="block-label white">Napa</div>
+              <div class="block-content vert-center">
+                <h3 class="white">The name of a sponsored trip in Napa</h3>
+              </div>
+            </a>
+            <div class="block-caption hidden-xs">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vestibulum odio id nibh dapibus tincidunt. Phasellus scelerisque gravida posuere. <a href="#">Sponsored Content</a></p>
+            </div>
+          </div>
+          <div class="col-sm-6 block-container">
+            <a href="#" class="block" style="background: url('img/backgrounds/wine-couple.png') center center no-repeat; background-size: cover;">
+              <div class="block-label white">Napa</div>
+              <div class="block-content vert-center">
+                <h3 class="white">The name of a sponsored trip in Napa</h3>
+              </div>
+            </a>
+            <div class="block-caption hidden-xs">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vestibulum odio id nibh dapibus tincidunt. Phasellus scelerisque gravida posuere. <a href="#">Sponsored Content</a></p>
+            </div>
+          </div>
+        </div>
+
+        -->
+      </div>
+    </section>        
+    
+    <section class="three-column container no-padding hidden-xs">
+      <div class="row">
+        
+        <div class="col-sm-4 the-column">
+          <a href="/wine/trip/carneros-the-quaint-side-of-napa" class="block" style="background: url('http://imagecdn-sfgate.pointslocal.com/img/icrop/370x240/package/350') center center no-repeat; background-size: cover;"></a>
+          <div class="block-label lightBrown">Sonoma</div>
+          <div class="block-content">
+            <h4 class="sans-bold orange"><a href="/wine/trip/carneros-the-quaint-side-of-napa">Calistoga: The Quaint Side of Napa</a></h4>
+          </div>
+        </div>
+        
+
+
+        <div class="col-sm-4 the-column trip-teaser-sponsored-small">
+
+        </div>
+
+        
+        <div class="col-sm-4 the-column">
+          <a href="/wine/trip/sonoma-syrah-tour" class="block" style="background: url('http://imagecdn-sfgate.pointslocal.com/img/icrop/370x240/package/325') center center no-repeat; background-size: cover;"></a>
+          <div class="block-label lightBrown">Sonoma</div>
+          <div class="block-content">
+            <h4 class="sans-bold orange"><a href="/wine/trip/sonoma-syrah-tour">Sonoma Syrah Tour</a></h4>
+          </div>
+        </div>
+                
+    </section>
+
+
+<script>
+$(document).ready(function() {
+
+    getSponsoredTrip();
+
+});
+</script>
+
+  <!-- STORIES TEASER -->
+
+<section class="callout-divider " style="background: url('http://imagecdn-sfgate.pointslocal.com/partners/thepress/img/backgrounds/rough-texture.png') bottom center no-repeat; background-size: 100%;">
+      <div class="container no-padding">
+        <div class="row">
+          <div class="col-sm-12">
+            <h2 class="divider divider-lg red"><span>Stories</span></h2>
+    <img class="stamp" src="/partners/thepress/img/thepress-stamp-red.png" alt="The Press">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="callout-content">
+<div class="story-label white"></div>
+              <h1 class="serif brown">Inside the Best Wineries and Tasting Rooms</h1>
+              <p class="medBrown">Hundreds of reviews and stories from our team of journalists</p>
+              <a href="/wine/storyindex" class="button button-cta serif bg-red">See All Stories</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+<section class="featured-story container no-padding">
+      <div class="row scrollable" id="scroll3">
+        
+        <div class="col-sm-12 block-container">
+          <a href="/wine/story/syrah-the-winemaker-s-grape" class="story-container" style="background: url('http://imagecdn-sfgate.pointslocal.com/img/icrop/1000x-1/stories/266') center center no-repeat; background-size: cover;">
+            <div class="story-content vert-center">
+              <div class="story-label white">Wine Facts</div>
+              <h1 class="white">Syrah: The Winemaker's Grape</h1>
+            </div>
+          </a>
+          <div class="story-text hidden-xs">
+            <p class="sans brown"></p>
+            <span class="date darkOlive" style="display:none;">February 7, 2017</span>
+          </div>
+        </div>
+           
+        <!-- Additional Mobile Scrolling Items (Appear in Three Column Block Below) -->
+        <!--
+        <div class="mobile-scroller hidden-sm hidden-md hidden-lg">
+          <div class="col-sm-12 block-container">
+            <a href="single-story.php" class="story-container" style="background: url('/partners/thepress/img//backgrounds/wine-growers.png') center center no-repeat; background-size: cover;">
+              <div class="story-content vert-center">
+                <div class="story-label white"></div>
+                <h1 class="white">The title of a Featured Story About California Wine Growers</h1>
+              </div>
+            </a>
+            <div class="story-text hidden-xs">
+              <p class="sans brown">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus varius risus eu tellus.</p>
+              <span class="date darkOlive">June 1, 2016</span>
+            </div>
+          </div>
+          <div class="col-sm-12 block-container">
+            <a href="single-story.php" class="story-container" style="background: url('/partners/thepress/img//backgrounds/wine-growers.png') center center no-repeat; background-size: cover;">
+              <div class="story-content vert-center">
+                <div class="story-label white">Category</div>
+                <h1 class="white">The title of a Featured Story About California Wine Growers</h1>
+              </div>
+            </a>
+            <div class="story-text hidden-xs">
+              <p class="sans brown">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus varius risus eu tellus.</p>
+              <span class="date darkOlive">June 1, 2016</span>
+            </div>
+          </div>
+          <div class="col-sm-12 block-container">
+            <a href="single-story.php" class="story-container" style="background: url('/partners/thepress/img//backgrounds/wine-growers.png') center center no-repeat; background-size: cover;">
+              <div class="story-content vert-center">
+                <div class="story-label white">Category</div>
+                <h1 class="white">The title of a Featured Story About California Wine Growers</h1>
+              </div>
+            </a>
+            <div class="story-text hidden-xs">
+              <p class="sans brown">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus varius risus eu tellus.</p>
+              <span class="date darkOlive">June 1, 2016</span>
+            </div>
+          </div>
+        </div>
+        -->
+
+
+      </div>
+    </section>
+
+
+
+<section class="three-column stories container no-padding hidden-xs">
+      <div class="row">
+        
+        <div class="col-sm-4 the-column">
+          <a href="/wine/story/lauterbach-cellars" class="block" style="background: url('http://imagecdn-sfgate.pointslocal.com/img/icrop/350x-1/stories/265') center center no-repeat; background-size: cover;"></a>
+          <div class="block-label lightBrown">Winery Review</div>
+          <div class="block-content">
+            <h4 class="sans-bold red"><a href="/wine/story/265">Lauterbach Cellars: Nitty&dash;Gritty Winemaking</a></h4>
+            <span class="date darkOlive" style="display:none;">December 13, 2016</span>
+          </div>
+        </div>
+        
+
+
+        <div class="col-sm-4 the-column story-teaser-sponsored-small">
+
+        </div>
+
+        
+        <div class="col-sm-4 the-column">
+          <a href="/wine/story/la-crema" class="block" style="background: url('http://imagecdn-sfgate.pointslocal.com/img/icrop/350x-1/stories/264') center center no-repeat; background-size: cover;"></a>
+          <div class="block-label lightBrown">Winery Review</div>
+          <div class="block-content">
+            <h4 class="sans-bold red"><a href="/wine/story/264">La Crema: Scenic Saralee Vineyard</a></h4>
+            <span class="date darkOlive" style="display:none;">December 13, 2016</span>
+          </div>
+        </div>
+        
+
+      </div>
+    </section>    
+
+<script>
+$(document).ready(function() {
+  getSponsoredStory();
+});
+</script>
+
+  <!-- WINERIES TEASER -->
+    <!-- Featured Callout -->
+    <section class="featured-callout" style="background: url('http://imagecdn-sfgate.pointslocal.com/partners/thepress/img/backgrounds/background-5-comp.jpg') center center no-repeat; background-size: cover;">
+      <div class="container no-padding">
+        <div class="row">
+          <div class="callout-content vert-center">
+            <h1 class="serif white">The Complete List of Wineries</h1>
+            <p class="white">Plus select restaurants & lodging</p>
+            <a href="/wine/wineries" class="button button-cta serif bg-olive-alpha">Places Directory</a>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+<!-- 107 -->
+   <!-- Two Column Divider Block Module -->
+    <section class="two-column two-column-divider container no-padding">
+      <div class="row">
+        <div class="col-sm-12">
+          <h2 class="divider divider-lg olive"><span>Featured Places</span></h2>
+        </div>
+      </div>
+      <div class="row scrollable" id="scroll2">
+        <div class="col-sm-6 block-container">
+          <a href="/wine/place/la-crema-at-saralee-vineyards" class="block-padding" style="background: url('http://imagecdn-sfgate.pointslocal.com/img/icrop/500x275/venue/2030') center center no-repeat; background-size: cover;">
+            <div class="block-content vert-center hidden-xs">
+              <h3 class="white">La Crema~</h3>
+            </div>
+          </a>
+          <div class="block-text">
+            <div class="block-label lightBrown"></div>
+            <h2 class="sans-bold olive hidden-sm hidden-md hidden-lg">La Crema</h2>
+            <p class="sans brown hidden-xs">Immerse yourself in the exquisite world of cool-climate Pinot Noir and Chardonnay with educational wine tastings and interactive VIP experiences at the stunning La Crema Estate at Saralee's Vineyard. Known for producing acclaimed cool-climate Pinot Noir and Chardonnay, La Crema's Russian River Valley Estate at the storied Saralee's Vineyard is the premier destination for wine education and culinary exploration in Sonoma County. The Estate is located in a historic barn dating back to the 1900s, which has accommodated a variety of different uses, from hops to horses, before becoming the family home of Richard and Saralee Kunde. Now, the legacy continues as the barn has been transformed into a multi-level tasting room for La Crema. Visitors are welcome to stop in for a Signature Tasting at the main bar and patio and explore the Estate with a self-guided walking tour through the vineyards. A selection of VIP experiences, including a Saralee's Tasting Vineyard Tour, Wine and Cheese Pairing, and exclusive tasting flights are available by appointment.</p>
+          </div>
+        </div>
+
+        
+
+
+        <div class="col-sm-6 block-container ">
+          <a href="/wine/place/schug-winery" class="block-padding sponsored" style="background: url('http://imagecdn-sfgate.pointslocal.com/img/icrop/500x275/venue/3117') center center no-repeat; background-size: cover;">
+
+            <div class="block-content vert-center hidden-xs">
+              <h3 class="white">Schug Winery</h3>
+              <span style="display:none;" class="partner-badge"></span>
+            </div>
+          </a>
+          <div class="block-text">
+            <div class="block-label lightBrown"></div>
+            <h2 class="sans-bold olive hidden-sm hidden-md hidden-lg">Schug Winery</h2>
+            <p class="sans brown hidden-xs">Founded in 1980, Schug Carneros Estate Winery produces wines nuanced with tradition and elegance, led by the vision of third generation vintner, Axel Schug, and Sonoma born winemaker Michael Cox. The winery was established to produce graceful and elegant Pinot Noirs from Sonoma's celebrated hills in the Carneros Appellation. Winemaker Michael Cox joined the winery in 1995 and remains dedicated to continuing founder Walter Schug's long legacy of crafting subtle and age-worthy wines. With the passing of founders Walter and Gertrud the desire to create wonderful wines at the Family Vineyards continues on. Since 1980 and the birth of the very first SCHUG label, a strong legacy developed that is now being passed on to grandchildren in the Schug Family.</p>
+          </div>
+        </div>        
+
+        <!-- Additional Mobile Scrolling Items (Appear in Three Column Block Below) -->
+        <!--
+        <div class="mobile-scroller hidden-sm hidden-md hidden-lg">
+          <div class="col-sm-6 block-container">
+            <a href="#" class="block-padding" style="background: url('/partners/thepress/img//backgrounds/wine-pour.png') center center no-repeat; background-size: cover;">
+              <div class="block-content vert-center hidden-xs">
+                <h3 class="white">Garden Creek Vineyards</h3>
+                <span style="display:none;" class="xpartner-badge"></span>
+              </div>
+            </a>
+            <div class="block-text">
+              <div class="block-label lightBrown">Sonoma</div>
+              <h2 class="sans-bold olive hidden-sm hidden-md hidden-lg">Scribe Winery</h2>
+              <p class="sans brown hidden-xs">Garden Creek Ranch began winegrowing in 1969 and handcrafting wine since 2001 on 100 acres in Alexander Valley under the Mayacamas Mountain range.</p>
+            </div>
+          </div>
+          <div class="col-sm-6 block-container">
+            <a href="#" class="block-padding" style="background: url('/partners/thepress/img//backgrounds/wine-cheese.png') center center no-repeat; background-size: cover;">
+              <div class="block-content vert-center hidden-xs">
+                <h3 class="white">Garden Creek Vineyards</h3>
+                <span style="display:none;" class="xpartner-badge"></span>
+              </div>
+            </a>
+            <div class="block-text">
+              <div class="block-label lightBrown">Sonoma</div>
+              <h2 class="sans-bold olive hidden-sm hidden-md hidden-lg">Garden Creek Vineyards</h2>
+              <p class="sans brown hidden-xs">Garden Creek Ranch began winegrowing in 1969 and handcrafting wine since 2001 on 100 acres in Alexander Valley under the Mayacamas Mountain range.</p>
+            </div>
+          </div>
+
+        </div>
+        -->
+      </div>
+
+    </section>
+
+
+          
+<!-- 108 -->
+    <!-- Quad Columns Module -->
+    <section class=" quad-column container no-padding hidden-xs">
+      <div class="row">
+        <div class="col-sm-3 block-container">
+          <a href="/wine/place/br-cohn-winery57b222831bfe3" class="quad-block" style="background: url('/img/icrop/300x100/venue/661') center center no-repeat; background-size: cover;"></a>
+          <div class="block-text">
+            <div class="block-label lightBrown"></div>
+            <h4 class="sans-bold olive"><a href="/wine/place/br-cohn-winery57b222831bfe3">B.R. Cohn Winery </a></h4>
+            <span class="xpartner-badge"></span>
+          </div>
+        </div>
+        <div class="col-sm-3 block-container">
+          <a href="/wine/place/dry-creek-vineyard" class="quad-block" style="background: url('/img/icrop/300x100/venue/650') center center no-repeat; background-size: cover;"></a>
+          <div class="block-text">
+            <div class="block-label lightBrown"></div>
+            <h4 class="sans-bold olive"><a href="/wine/place/dry-creek-vineyard">Dry Creek Vineyard</a></h4>
+            <span class="xpartner-badge"></span>
+          </div>
+        </div>
+        <div class="col-sm-3 block-container">
+          <a href="/wine/place/hope-grace" class="quad-block" style="background: url('/img/icrop/300x100/venue/3127') center center no-repeat; background-size: cover;"></a>
+          <div class="block-text">
+            <div class="block-label lightBrown"></div>
+            <h4 class="sans-bold olive"><a href="/wine/place/hope-grace">Hope &amp; Grace</a></h4>
+            <span class="xpartner-badge"></span>
+          </div>
+        </div>
+        <div class="col-sm-3 block-container">
+          <a href="/wine/place/jordan-vineyard-winery" class="quad-block" style="background: url('/img/icrop/300x100/venue/1379') center center no-repeat; background-size: cover;"></a>
+          <div class="block-text">
+            <div class="block-label lightBrown"></div>
+            <h4 class="sans-bold olive"><a href="/wine/place/jordan-vineyard-winery">Jordan Vineyard &amp; Winery</a></h4>
+            <span class="xpartner-badge"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
 
   
 
-  
-
-  
-
-  
-
-  
+  <!-- 109 -->
+    <!-- Featured Callout -->
+    <section class="featured-callout" style="background: url('http://imagecdn-sfgate.pointslocal.com/partners/thepress/img/backgrounds/background-4-comp.jpg') center center no-repeat; background-size: cover;">
+      <div class="container no-padding">
+        <div class="row">
+          <div class="callout-content vert-center">
+            <p class="sans-bold white">Tours, tastings, classes and more</p>
+            <h1 class="serif white"><[var:events:headline]></h1>
+            <a href="/wine/events" class="button button-cta serif bg-brown">See Events Calendar</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
   
 
@@ -848,4 +1048,4 @@ $('#toast').html('Added to <a href="/wine-my-trip">My Trip</a>');
     <script src="/partners/thepress/js/map.js"></script>
     <script src="/partners/thepress/js/index.js"></script>
   </body>
-</html><!-- Cannot open <b>/mnt/pointslocal-app/partners/thepress/templates/site/media/media_stream.template</b> --><!-- -->
+</html><!-- Cannot open <b>/mnt/pointslocal-app/partners/thepress/templates/site/media/media_stream.template</b> --><!-- --><!-- from cache -->

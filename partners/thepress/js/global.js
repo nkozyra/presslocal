@@ -3,8 +3,8 @@
     $('[data-cache="background"]').each(function() {
       var bg = ($(this).css('background-image'));
       var time = Math.floor(Date.now() / 1000);
-      bg = bg.replace(/(.*?)"\)/,'$1&time='+time+'")');
-      $(this).css('background-image',bg);
+      //bg = bg.replace(/(.*?)"\)/,'$1&time='+time+'")');
+      //$(this).css('background-image',bg);
     });
   /*
   * ============================================

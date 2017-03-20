@@ -4,7 +4,7 @@ var MoreTripsTemplate = `      <div class="row">
       {{#packages}}
         <div class="col-sm-4 the-column">
           <a href="/trip/{{guid}}" class="block" data-cache="background" style="background: url('http://imagecdn-sfgate.pointslocal.com//image?method=image.icrop&context=package&id={{id}}&w=600&h=-1') center center no-repeat; background-size: cover;"></a>
-          <div class="block-label lightBrown">Sonoma</div>
+          <div class="block-label lightBrown">{{category}}</div>
           <div class="block-content">
             <h4 class="sans-bold orange"><a href="/trip/{{guid}}">{{title}}</a></h4>
           </div>

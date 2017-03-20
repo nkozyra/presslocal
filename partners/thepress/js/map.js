@@ -10,10 +10,76 @@ var Search = {
   search: ''
 }
 var orgSearch = Search;
-
+var _INIT_LAT = 38.4404;
+var _INIT_LON = -122.7141;
 var windowRefs = {};
 var mapMarkerBounds;
 
+
+function openCardHud(el) {
+  $('.hud-card-details').removeClass('inactive');
+  $('.hud-winery').addClass('inactive');
+  $('.hud-trips').addClass('inactive');
+  $('.hud-itinerary').addClass('active');  
+
+  var cellarPass = $(el).attr('data-cellarpass');
+  if (!cellarPass) {
+    $('#map-card-details .book').hide();
+  } else {
+    $('#map-card-details .book').show();
+    $('#map-card-details .book a').attr('href',cellarPass);
+  }
+
+  $('#map-card-title').html($(el).attr('data-name'));
+  $('#map-card-image').attr('src','/image?method=image.icrop&context=stories&w=80&h=80&id='+$(el).attr('data-image'));
+  $('#map-card-address').html($(el).attr('data-address'));
+  $('#map-card-description').html($(el).attr('data-excerpt'));
+  $('#map-card-details .social.twitter').attr('href','https://twitter.com/home?status='+$(el).attr('data-name')+':%20http://thepress.sfgate.com/wine/place/'+$(el).attr('data-guid'));
+  $('#map-card-details .social.facebook').attr('href','http://www.facebook.com/sharer.php?u=http://thepress.sfgate.com/wine/place/'+$(el).attr('data-guid'));
+  $('#map-card-details .trip-item-trigger-receiver, #map-card-details .trip-modal-trigger').attr('data-type',$(el).attr('data-type'));
+  $('#map-card-details .trip-item-trigger-receiver, #map-card-details .trip-modal-trigger').attr('data-name',$(el).attr('data-name'));
+  $('#map-card-details .trip-item-trigger-receiver, #map-card-details .trip-modal-trigger').attr('data-address',$(el).attr('data-address'));
+  $('#map-card-details .trip-item-trigger-receiver, #map-card-details .trip-modal-trigger').attr('data-id',$(el).attr('data-id'));
+  $('#map-card-details .trip-item-trigger-receiver, #map-card-details .trip-modal-trigger').attr('data-latitude',$(el).attr('data-latitude'));
+  $('#map-card-details .trip-item-trigger-receiver, #map-card-details .trip-modal-trigger').attr('data-longitude',$(el).attr('data-longitude'));
+  // $('#map-card-details .trip-item-trigger-receiver, #map-card-details .trip-modal-trigger').addClass('trip-item-trigger');
+
+  resetTripReceivers();    
+  tripReceiverDropdowns();    
+  getCurrentWorkingTrip();
+
+    var cardMap = new google.maps.Map(document.getElementById('hud-card-details-content-map'), {
+          center: {lat: parseFloat($(el).attr('data-latitude')), lng: parseFloat($(el).attr('data-longitude'))},
+          zoom: 10
+        } );
+
+         var marker = new MarkerWithLabel({
+
+          position: {lat: parseFloat($(el).attr('data-latitude')), lng: parseFloat($(el).attr('data-longitude'))},
+          map: cardMap,
+          title: $(el).attr('data-name'),
+          labelContent: $(el).attr('data-counter'),
+          labelClass: "dynamicMapMarker",
+          labelAnchor: new google.maps.Point(0, -5),
+          icon: {
+            path: _MAP_PATH,
+            scale: .1,
+            fillColor: _MARKER_FILL_COLOR,
+            fillOpacity: .9,
+            size: new google.maps.Size(60, 72),
+            scaledSize: new google.maps.Size(30, 36),
+
+          },
+          optimized: false
+        });   
+
+  
+}
+
+function closeCardHud() {
+  $('.hud-card-details').addClass('inactive');
+  $('.hud-winery').removeClass('inactive');  
+}
 
 function offsetCenter(latlng, offsetx, offsety) {
     // latlng is the apparent centre-point
@@ -73,7 +139,7 @@ EAST/WEST BORDER - as far as the Napa County line in each direction
 */
 
 var Neighborhoods = {
-  "keys": {"napa": { lat: 38.344705, lon: -122.271676}, "All Regions": {}, "sonoma": {lat: 38.488978, lon: -122.690361, "reset": true } },
+  "keys": {"napa": { lat: 38.344705, lon: -122.271676, "neighborhood": "napa"}, "All Regions": {}, "sonoma": {lat: 38.488978, lon: -122.690361, "reset": true, "neighborhood": "sonoma" } },
   "Napa": { "items": [
     {"name": "Up Valley", "header": false, "latitude": 38.522564, "longitude": -122.460145, "neighborhood": "napa-up-valley" },
     {"name": "Down Valley", "header": false, "latitude": 38.388715, "longitude": -122.324584, "neighborhood": "down-valley"},
@@ -148,8 +214,20 @@ $(document).ready(function() {
 });
 
 function clearSearch() {
+  /*
   Search.search = '';
+  Search.neighborhood = false,
+  Search.category = 1,
+  Search.latitude = 0,
+  Search.longitude = 0,
+  Search.radius = 0,
+  Search.type = 'winery',
+  Search.filterData = {},
+  Search.filters = {},
+  Search.search = ''  
   updateMap();
+  */
+  $('#toggle-map-region-label-reset').trigger('click');
 }
 
 function setSubRegions(reg) {
@@ -203,7 +281,7 @@ function searchSubRegions(reg) {
             '<p>'+data.address+'<br> '+data.phone+'<br> </p>'+
           '</div>'+
           '<div class="poi-button">'+
-            '<a data-type="venue" data-name="Frank Family Vineyards" data-latitude="'+data.lat+'" data-longitude="'+data.lng+'" data-id="'+data.id+'" data-address="" class="button button-xs sans-bold bg-olive trip-receiver trip-receiver-'+data.id+'" xnclick="addTrip({id:'+data.id+', type:\'venue\',name: \''+data.name+'\', lat: '+data.lat+', lon: '+data.lng+' }, this)">'+(_Store.hasTrips ? 'Add To Trip' : 'Create A Trip')+'</a>'+
+            '<a data-type="venue" data-name="Frank Family Vineyards" data-latitude="'+data.lat+'" data-longitude="'+data.lng+'" data-id="'+data.id+'" data-address="" class="button button-xs sans-bold bg-olive trip-modal-trigger trip-receiver-'+data.id+'" xnclick="addTrip({id:'+data.id+', type:\'venue\',name: \''+data.name+'\', lat: '+data.lat+', lon: '+data.lng+' }, this)">'+(_Store.hasTrips ? 'Add To Trip' : 'Add To Trip')+'</a>'+
           '</div>'+
         '</div>';
 
@@ -220,8 +298,10 @@ function searchSubRegions(reg) {
           for (ob in windowRefs) {
             windowRefs[ob].close();
           }
-          if (screen.width < 500) {
+          if (screen.width < 3500) {
             infowindow.open(map, marker);
+            infowindow.clicked = true;
+            resetTripReceivers();
           }
           //
           console.log('eh?');
@@ -229,9 +309,19 @@ function searchSubRegions(reg) {
           scrollDown();
           searchActive = true;
         });
+        marker.addListener('mouseover', function() {
+            infowindow.open(map, marker);          
+          });
+        marker.addListener('mouseout', function() {
+            if (!infowindow.clicked) {
+              infowindow.close();                
+            }        
+        });
         google.maps.event.addListener(infowindow,'closeclick',function(){
+           infowindow.clicked = false;
            searchActive = false;
         });
+        resetTripReceivers();
         
       }
 
@@ -380,7 +470,7 @@ function updateMap(opts) {
         for (var ri = 0; ri < d.items.length; ri++ ) {
           if (d.items[ri].story_text) {
               d.itemClass = 'venue-anchor';
-              d.items[ri].counter = d.items[ri].counter + 1;
+              d.items[ri].counter = parseInt(d.items[ri].counter) + 1;
               d.items[ri].story_text = stripTags(d.items[ri].story_text);
               d.items[ri].story_text = d.items[ri].story_text.split(/\n/);
               d.items[ri].story_text = d.items[ri].story_text[0].replace(/^([\s\S]{130}[^\s]*).*/mg, "$1");
@@ -395,9 +485,9 @@ function updateMap(opts) {
           if (!f['tier:1-2'] && !f['tier:3']) {
             f['tier:none'] = true;
           }
-          if (f.story_guid && !f['tier:3'] && (f['tier:1-2'])) {
+          if (f.story_guid && !f['tier:3']) {
             f['tier:1-2'] = false;
-
+            f['tier:none'] = false;
             f['tier:story'] = true;
           }          
           f.trip_item_message = ( _Store.hasTrips ? 'Add To Trip' : 'Create A Trip');
@@ -417,7 +507,6 @@ function updateMap(opts) {
             addMarker(myLatLng, icon, v);
       });
       isScrollListener();
-      //resetTripReceivers();
       resetTripReceivers();
       
       
@@ -459,9 +548,9 @@ function updateMap(opts) {
 
 
     var options = {
-      center: {lat: 38.4404, lng: -122.7141},
+      center: {lat: _INIT_LAT, lng: _INIT_LON},
 
-
+      zoom: 11,
       scrollwheel: false,
       mapTypeControl: false,
       draggable: true,
@@ -556,7 +645,7 @@ function updateMap(opts) {
             '<p>'+data[i].address+'<br> '+data[i].phone+'<br> </p>'+
           '</div>'+
           '<div class="poi-button">'+
-            '<a class="button button-xs sans-bold bg-olive" onclick="addTrip({id:'+data[i].id+', type:\'venue\',name: \''+data[i].name+'\', lat: '+data[i].lat+', lon: '+data[i].lng+' }, this)">'+(_Store.hasTrips ? 'Add To Trip' : 'Create A Trip')+'</a>'+
+            '<a data-name="Frank Family Vineyards" data-latitude="'+data[i].lat+'" data-longitude="'+data[i].lng+'" data-id="'+data[i].id+'" class="button button-xs sans-bold bg-olive trip-modal-trigger" xnclick="addTrip({id:'+data[i].id+', type:\'venue\',name: \''+data[i].name+'\', lat: '+data[i].lat+', lon: '+data[i].lng+' }, this)">'+(_Store.hasTrips ? 'Add To Trip' : 'Add To Trip')+'</a>'+
           '</div>'+
         '</div>';
         markerRefs[data[i].id] = marker;
@@ -572,17 +661,30 @@ function updateMap(opts) {
           }
            location.hash = "#venue_card_" + marker.vid;
            scrollDown();
-           if (screen.width < 500) {
+           if (screen.width < 3500) {
               infowindow.open(map, marker);
+              infowindow.clicked = true;
+              resetTripReceivers();
            }
           //
           searchActive = true;
         });
+        marker.addListener('mouseover', function() {
+            infowindow.open(map, marker);          
+          });
+        marker.addListener('mouseout', function() {
+            if (!infowindow.clicked) {
+              infowindow.close();                
+            }
+        });
+
         google.maps.event.addListener(infowindow,'closeclick',function(){
            searchActive = false;
+           infowindow.clicked = false;
         });
 
         markers.push(marker);
+        resetTripReceivers();
       }
 
       // Get bounds and reset zoom
@@ -603,7 +705,7 @@ function updateMap(opts) {
 
       getBounds();
       isScrollListener();
-
+      resetTripReceivers();
 
 
 
@@ -635,7 +737,7 @@ function updateMap(opts) {
 
         mD = localStorage.getItem('messageDismissed')
         d.quicktip = (mD != null && mD ? false : true );
-
+        console.log('data=>',d);
         for(ti=0;ti<d.items.length;ti++) {
           d.items[ti].trip_item_message = ( _Store.hasTrips ? 'Add To Trip' : 'Create a Trip');
           d.items[ti].addclass = 'venue-anchor';
@@ -654,9 +756,11 @@ function updateMap(opts) {
           if (!d.items[ti]['tier:1-2'] && !d.items[ti]['tier:3']) {
             d.items[ti]['tier:none'] = true;
           }
-          if (d.items[ti].story_guid && !d.items[ti]['tier:3'] && (d.items[ti]['tier:1-2'])) {
-            d.items[ti]['tier:1-2'] = false;
 
+          // && (d.items[ti]['tier:1-2'])
+          if (d.items[ti].story_guid && !d.items[ti]['tier:3']) {
+            d.items[ti]['tier:1-2'] = false;
+            d.items[ti]['tier:none'] = false;
             d.items[ti]['tier:story'] = true;
           }
         }

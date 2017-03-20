@@ -13,9 +13,36 @@ var _WORKING_TRIP;
 var _TRIPS = {};
 var markerRefs = {};
 var windowRefs = {};
+var _ACTIVE_ITEMS = [];
 var _Trip = function() {
 	
 }
+
+/*
+	Templates
+*/
+var TripTemplate = '<section class="container directory-alt"><div class=row><div class="col-sm-12 single-toolbar"><ul style=display:none><li class="hidden-xs lightBrown social-label">share<li class=social><a class="sans-bold orange"href="https://twitter.com/home?status=57ea88bcb96ef:%20http://events.sfgate.com/wine-trip/{{guid}}"><i class="fa fa-twitter"></i></a><li class=social><a class="sans-bold orange"href="http://www.facebook.com/sharer.php?u=http://events.sfgate.com.com/wine-trip/{{guid}}"><i class="fa fa-facebook-square"></i></a></ul></div></div>{{#items}}<div class="row mytrip-item-row"><div class="col-sm-12 directory-list mytrip-item"><div class="row directory-item"><div class="col-sm-12 item-container"><div class=row><div class="hidden-xs col-sm-1 directory-marker"><span>{{counter}}</span></div>{{#isEvent}}<div class="directory-pic col-xs-3"><div class="sans-bold event-date vert-center white">Feb 9</div><a href=/wine/event/the-great-grape-study-chardonnayfebruary-9-201758975564d0d32><img alt=""src="/image?method=image.icrop&context=event.yield&w=300&h=200&id=12196&trim=1"></a></div>{{/isEvent}}<div class="col-sm-{{#isEvent}}5{{/isEvent}}{{^isEvent}}8{{/isEvent}} directory-info"><h3 class="brown serif"><a href=/{{#isEvent}}wine/event{{/isEvent}}{{^isEvent}}wine/place{{/isEvent}}/{{element_guid}}>{{{name}}}</a></h3><span style=display:none class=partner-badge></span><h4 class="sans-bold orange">{{neighborhood}}</h4><div class=address><p>{{#street}}{{street}},<br>{{/street}}{{#city}}{{city}},{{/city}} {{#state}}{{state}}{{/state}} {{#zip}}{{zip}}{{/zip}}{{^street}}{{address}}{{/street}}{{#phone}}<br>{{phone}}<br>{{/phone}}<span style=display:none>10AM-5PM</span> <span style=display:none class="orange status">Open</span></div></div><div class="hidden-xs col-sm-3 directory-button"><a class="sans-bold button button-xs bg-red pull-right"onclick="removeTrip({id:\'{{id}}\'{{#package_nid}},packageID:\'{{package_nid}}\'{{/package_nid}}},this)">Remove From Trip</a> <a class="sans-bold button button-xs bg-red trip-receiver"style=display:none data-package-id={{package_id}} data-venue_id={{id}}>Move To Trip</a> <a class="sans-bold orange"href=# style=display:none>Website</a> <a class="sans-bold orange"href=# style=display:none><i class="fa fa-location-arrow"></i> Directions</a></div><div class="col-sm-4 directory-buttons hidden-lg hidden-md hidden-sm"><ul><li><a class="sans-bold button button-xs pull-right bg-lightOrange"onclick="removeTrip({id:\'{{id}}\'{{#package_id}},packageID:\'{{package_id}}\'{{/package_id}}},this)">Remove From Trip</a><li><a class="sans-bold orange"href=#><i class="fa fa-map-o"></i> Map</a></ul></div></div></div></div></div></div>{{/items}}</section>';
+
+var xTripTemplate = '<section class="container directory-alt"><div class="row"><div class="col-sm-12 single-toolbar"><ul><li class="social-label lightBrown hidden-xs">share</li><li class="social"><a href="https://twitter.com/home?status=57ea88bcb96ef:%20http://events.sfgate.com/wine-trip/{{guid}}" class="orange sans-bold"><i class="fa fa-twitter"></i></a></li><li class="social"><a href="http://www.facebook.com/sharer.php?u=http://events.sfgate.com.com/wine-trip/{{guid}}" class="orange sans-bold"><i class="fa fa-facebook-square"></i></a></li></ul></div></div>{{#items}}<div class=row><div class="col-sm-12 directory-list"><div class="row directory-item"><div class="col-sm-12 item-container"><div class=row><div class="hidden-xs col-sm-2 directory-pic"><a href="/wine-place/{{venue_guid}}"><img alt=""src="/image?method=image.icrop&context={{context}}&id={{id}}&w=300&h=-1" style="margin-bottom:5px;"></a></div><div class="col-sm-7 directory-info"><h3 class="brown serif"><a href="/wine-place/{{venue_guid}}">{{{name}}}</a></h3><span style="display:none;" class=partner-badge></span><h4 class="sans-bold orange">{{neighborhood}}</h4><div class=address><p>{{#street}}{{street}},<br>{{/street}}{{#city}}{{city}},{{/city}} {{#state}}{{state}}{{/state}} {{#zip}}{{zip}}{{/zip}}{{#phone}}<br>{{phone}}<br>{{/phone}}<span style="display:none;">10AM-5PM</span> <span class="orange status" style="display:none;">Open</span></div></div><div class="hidden-xs col-sm-3 directory-button"><a onclick="removeTrip({id:\'{{id}}\'{{#package_nid}},packageID:\'{{package_nid}}\'{{/package_nid}}},this)" class="sans-bold bg-lightOrange button button-xs">Remove From Trip</a> <a  class="trip-receiver sans-bold bg-lightOrange button button-xs" data-venue_id="{{id}}" data-package-id="{{package_id}}" style="display:none;">Move To Trip</a> <a href=# class="sans-bold orange" style="display:none;">Website</a> <a href=# class="sans-bold orange" style="display:none;"><i class="fa fa-location-arrow"></i> Directions</a></div><div class="col-sm-4 directory-buttons hidden-lg hidden-md hidden-sm"><ul><li><a onclick="removeTrip({id:\'{{id}}\'{{#package_id}},packageID:\'{{package_id}}\'{{/package_id}}},this)" class="sans-bold bg-lightOrange button button-xs">Remove From Trip</a><li><a href=# class="sans-bold orange"><i class="fa fa-map-o"></i> Map</a></ul></div></div></div></div></div></div>{{/items}}</section>';
+
+var TripsTemplate = "<section class='directory container'><div class='col-sm-12 directory-list'>{{^items}} <h3 style='text-align:center;'>You haven’t created anything yet!</h3> <p>Create your first Trip. Visit the map page and use the filters to sort through over 200 Napa and Sonoma wineries. <p> <p>Make sure you log in or create an account to access and customize The Press Trip Planner: Name and save your trip, add places and events, and access your trip map and driving directions right from your mobile device.</p> {{/items}}{{#items}}<div id=\"my-trip-{{package_id}}\" class=\"directory-item row\"><div class=\"col-xs-9 directory-info mytrips-item\"><h3 class=\"brown serif\"><a href='/wine/my-trip/{{package_guid}}' id='' class='editable-trip-title serif brown ' style='display: inline-block;'>{{package_title}}</a></h3><div class=\"mytrips-meta\"><h4 style='text-align:left;' class=\"hidden-xs orange sans-bold\">{{date}}</h4> <h4>{{package_length}} items</h4></div> <div class=\"mytrips-actions\"><a class='button button-sm bg-clear actions' href='/wine/my-trip/{{package_guid}}'>View Trip</a> <a onclick=\"deleteTrip({{package_id}});\" class='button button-sm bg-red actions'>Remove Trip</a></div><p>{{package_text}}</p><div class=\"hidden-xs address\"><p></div><div class=\"address hidden-lg hidden-md hidden-sm\"><p></div></div><div class=\"hidden-xs col-xs-3 directory-button\">{{#package_id}}<a href='/wine/my-trip/{{package_guid}}'><img src='/image?method=image.icrop&context=package.items&id={{package_id}}&w=600&h=-1&noimg=/partners/thepress/img/thepress-default.png' /></a>{{/package_id}}</div></div>{{/items}}</div></section>";
+
+var o0TripsTemplate = "<section class='directory container'><div class='col-sm-12 directory-list'>{{^items}} <h3 style='text-align:center;'>You haven’t created anything yet!</h3> <p>Create your first Trip. Visit the map page and use the filters to sort through over 200 Napa and Sonoma wineries. <p> <p>Make sure you log in or create an account to access and customize The Press Trip Planner: Name and save your trip, add places and events, and access your trip map and driving directions right from your mobile device.</p> {{/items}}{{#items}}<div id=\"my-trip-{{package_id}}\" class=\"directory-item row\"><div class=\"col-xs-6 directory-info\"><h3 class=\"brown serif\"><a href='/wine/my-trip/{{package_guid}}' id='' class='editable-trip-title serif brown ' style='display: inline-block;'>{{package_title}}</a></h3><h4 style='text-align:left;' class=\"hidden-xs orange sans-bold\">{{date}}</h4><p>{{package_text}}</p><div class=\"hidden-xs address\"><p></div><div class=\"address hidden-lg hidden-md hidden-sm\"><p></div></div><div class=\"hidden-xs col-xs-3 directory-button\">{{#package_id}}<a href='/wine/my-trip/{{package_guid}}'><img src='/image?method=image.icrop&context=package.items&id={{package_id}}&w=600&h=-1&noimg=/partners/thepress/img/thepress-default.png' /></a>{{/package_id}}</div><div class=\" col-xs-4 directory-button\"><a href=/wine/my-trip/{{package_guid}} class=\"sans-bold bg-lightOrange button button-xs\" style=\"display:none\">View Trip</a> <a onclick=\"deleteTrip({{package_id}});\" class=\"sans-bold bxg-lightOrange xbutton bxutton-xs\"><svg width=\"30\" height=\"30\" viewBox=\"0 0 1792 1792\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M1490 1322q0 40-28 68l-136 136q-28 28-68 28t-68-28l-294-294-294 294q-28 28-68 28t-68-28l-136-136q-28-28-28-68t28-68l294-294-294-294q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 294 294-294q28-28 68-28t68 28l136 136q28 28 28 68t-28 68l-294 294 294 294q28 28 28 68z\"></path></svg></a></div></div>{{/items}}</div></section>";
+
+var SponsoredTripTemplate = '{{#items}}<a href="/wine/trip/{{guid}}" class="block sponsored" style="background: url(\'/image?method=image.crop&context=package&id={{id}}&w=370&h=240\') center center no-repeat; background-size: cover;">            <div class="block-label white no-accent"><span class="partner-badge"></span></div><div class="block-label white">{{&neighborhood}}</div><div class="block-content vert-center"><h3 class="white"	>{{&title}}</h3></div></a><div class="block-caption hidden-xs"><p>{{subtitle}}</p></div>{{/items}}';
+
+var SponsoredTripTemplateSmall = '{{#items}}          <a href="/wine/trip/{{guid}}" class="block" style="background: url(\'/image?method=image.crop&context=package&id={{id}}&w=370&h=240\') center center no-repeat; background-size: cover;"></a><div class="block-label lightBrown">{{category}}</div><div class="block-content"><span class="partner-badge" style="display:none;"></span><h4 class="sans-bold orange"><a href="/wine-trip/{{guid}}">{{&title}}</a></h4></div>{{/items}}';
+
+var SponsoredStoryTemplateSmall = '{{#items}}          <a href="/wine-story/{{guid}}" class="block" style="background: url(\'image?method=image.icrop&context=stories&id={{id}}&w=370&h=240\') center center no-repeat; background-size: cover;"></a><div class="block-label lightBrown">{{category}}</div><div class="block-content"><h4 class="sans-bold orange"><a href="/wine-story/{{guid}}">{{&title}}</a></h4></div>{{/items}}';
+
+var MapItineraryTemplate = '{{#items}}<div class="row itinerary-item ui-sortable-handle"><div class="col-xs-2"><div class="num sans-bold">{{counter}}</div></div><div class="col-xs-8 no-padding"><h4 class="sans-bold olive item-title">{{name}}</h4><p class="address sans black">{{address}}</p></div><div class="col-xs-1 no-padding"><a href="#" onclick="removeTrip({id:{{id}}});updateMapItinerary();" class="remove-item sans-bold lightBeige">×</a></div></div>{{/items}}';
+
+var SuggestedStoriesTemplate = '<section style="margin-bottom: 30px;" class="no-padding container single-content"><div class=row><div class=col-sm-8><div class="no-padding single-body"><div class="hidden-xs related-stories"><div class=row><div class=col-sm-12><h2 class="divider divider-xs lightBrown"><span>Related Stories</span></h2></div></div><div class=row>{{#stories}}<div class="col-sm-4 story-container"><div class="story-content vert-center"><a class="orange sans-bold"href=/wine/story/{{guid}}>{{title}}</a></div></div>{{/stories}}</div></div></div></div></div></section>';
+
+var SuggestedPackagesTemplate = '<section class="container no-padding quad-column quad-column-divider"><div class=row><div class=col-sm-12><h2 class="lightBrown divider divider-sm"><span>Recommended</span></h2></div></div><div class="row scrollable"id=scroll1>{{#items}}<div class="block-container col-sm-3"><a href="/wine/trip/{{guid}}" class=quad-block style="background:url(http://imagecdn-sfgate.pointslocal.com/image?method=image.icrop&context=package&id={{id}}&w=300&h=-1) center center no-repeat;background-size:cover"></a><div class=block-text><div class="lightBrown block-label">{{category}}</div><h4 class="orange sans-bold"><a href="/wine/trip/{{guid}}">{{title}}</a></h4></div></div>{{/items}}</div></section>';
+
+var StoryVenueEventMapTemplate = '{{#items}}<a href="/wine/place/{{guid}}">{{name}}</a>{{/items}}';
+
 
 function getParameterByName(name, url) {
     if (!url) {
@@ -140,7 +167,7 @@ function updateButtons() {
 	}
 
 /* Finds .trip-receiver elements, adds existing trip dropdowns if they exist */
-	function tripReceiverDropdowns(klass,action) {
+	function tripReceiverDropdowns(klass,action,selectedID) {
 		console.log('tripReceiverDropdowns()');
 		hideCurrentTrip = false;
 		if (!action) {
@@ -152,6 +179,7 @@ function updateButtons() {
 		$.getJSON('/api.json?method=events.packages-user', function(trips) {
 
 			dropdownElement = '';
+			selectorElement = '';
 			outerElement = '<ul class="dropdown-menu trip-receiver-dropdown --innerclass-- '+klass+'">';
 			if (!hideCurrentTrip) {
 				outerElement += '<li onclick="addItemToTrip(this, {id:false});">Current Trip</li>';
@@ -164,23 +192,33 @@ function updateButtons() {
 				outerElement += '<li onclick="'+action+'(this,{id:'+this.package_id+'});">'+this.package_title+'</li>';
 				$('.tripcount[data-id="'+this.package_id+'"]').text(this.package_length);
 				_TRIPS[this.package_id] = this;
-
-
+				modalSelected = (this.package_id == selectedID ? 'selected' : '');
+				selectorElement += '<a onclick="addItemTrip(this);"><li data-guid="'+this.package_guid+'" data-name="'+this.package_title+'" data-id="'+this.package_id+'" class="'+modalSelected+'"><div class="row"><div class="col-xs-10">'+this.package_title+'</div><div class="col-xs-2"><span class="modal-selection-status"></span></div></div></li></a>';
+				$(this.items).each(function() {
+					_ACTIVE_ITEMS.push(this.package_item_element_type+':'+this.package_item_element_id)
+				})
 
 			});
+
+			$(_ACTIVE_ITEMS).each(function() {
+				$('[data-id="'+this+'"]').addClass('intrip');
+			});
 			if (trips.items != null && trips.items.length > 0) {
-				dropdownElement += '<li role="separator" class="divider"></li>';
+				// dropdownElement += '<li role="separator" class="divider"></li>';
+
 			}			
 			if (trips.items == null || trips.items.length < 1) {
 				tripLength = 0;
 				_WORKING_TRIP = false;
 				localStorage.setItem('workingTrip',_WORKING_TRIP);
+				selectorElement += '<li class="modal-selection-message">Oops, you do not have any trips started.<br />Create a new trip to begin</li>';
 			}
 			dropdownElement += '<li><a href="#" onclick="initNewTrip();"> Create New Trip</a></li> ';
 			outerElement += '</ul>';
 			_TripsHTML = outerElement;
 
 			$('#dropdown-trip-selector').html(dropdownElement);
+			$('.modal-selection ul').html(selectorElement);
 			$('#mobile-trips-container-trips').html(dropdownElement);
 			$('.trip-receiver').each(function() {
 				/*
@@ -198,12 +236,17 @@ function updateButtons() {
 			});
 			getCurrentWorkingTrip();
 			if (!_AUTH || tripLength < 1) {
+				if (_AUTH) {
+					console.log('auth, but fewer than 1 trip');
+					$('.mobile-trips-container').show();
+					$('#mobile-trips-container-message').html("You don't have any trips yet. <br />Why not start one?");
+				}
 				$('#tripselect-noauth').show();
 				$('.tripselect .dropdown-toggle').hide();
 			} else {
 				$('.mobile-trips-container').show();
-				$('#tripselect-noauth').hide();
-				$('.tripselect .dropdown-toggle').show();				
+				// $('#tripselect-noauth').hide();
+				//$('.tripselect .dropdown-toggle').show();				
 			}
 				$('#auth-container').show();
 
@@ -214,7 +257,35 @@ function updateButtons() {
 
 	function resetTripReceivers() {
 		console.log('resetTripReceivers()');
+		$('.trip-modal-trigger').click(function() {
+
+			if (!_AUTH) {
+				$('#signinModal').attr('data-step',$(this).attr('id'));
+				$('#signinModal').modal();
+				return;
+			}
+
+			tripTitle = $(this).attr('data-trip-title');
+			if (tripTitle) {
+				$('#tripSelectionModalCreateName').val(tripTitle);
+				var ids = [];
+				$('.trip-item').each(function() {
+					ids.push($(this).attr('data-id'));
+				});
+				$('#tripSelectionModal').attr('data-ids',ids.join(','));
+			}
+
+			$('#tripSelectionModal').modal({});
+			$('#tripSelectionModalName').html($(this).attr('data-name'));
+			$('#tripSelectionModalAddress').html($(this).attr('data-address'));
+			$('#tripSelectionModal').attr('data-id',$(this).attr('data-id'));
+			$('#tripSelectionModal').attr('data-name',$(this).attr('data-name'));
+			$('#tripSelectionModal').attr('data-type',$(this).attr('data-type'));
+			$('#tripSelectionModal').attr('data-guid',$(this).attr('data-guid')+'');
+			$('#tripSelectionModalImage').attr('src','/image?method=image.icrop&context=venue&w=270&h=150&id='+$(this).attr('data-id'));
+		})
 		$('.trip-item-trigger').click(function() {
+			console.log('Clicked');
 			if (!_AUTH) {
 				initNewTrip();
 				return;
@@ -281,7 +352,34 @@ function updateStore(init) {
 		}
 
 	}
+}
+//live-edit-suggestions
+	function setLiveContentPreview(el) {
+		isSelf = $(el).closest('.live-edit-container').hasClass('live-edit-self');
+		img = '/image?method=image.icrop&context=venue&id='+$(el).attr('data-id')+'&w=1600&h=-1';
+		$(el).closest('.live-edit-container').find('.live-edit-name').html($(el).attr('data-name'));
+		$(el).closest('.live-edit-container').find('.live-edit-description').html($(el).attr('data-abstract'));		
 
+		if (isSelf) {
+			$(el).closest('.live-edit-container').css('background-image',"url("+img+")");
+		} else {
+			$(el).closest('.live-edit-container').find('.live-edit-image').css('background-image',"url("+img+")");
+		}
+		
+		//$(el).closest('.live-edit-content').slideUp();
+	}
+
+
+	function liveEditListener() {
+		$('.live-edit-content input').on('keyup',function() {
+			elm = $(this);
+			txt = ($(this).val());
+			var design = '{{#items}}<div onclick="setLiveContentPreview(this);" class="live-edit-content-option" data-name="{{name}}" data-id="{{id}}" data-abstract="{{abstract}}{{^abstract}}{{description}} (This venue does not have an abstract){{/abstract}}">{{name}}</div>{{/items}}<div><a class="live-edit-content-action" style="display:none;">Done</a></div>';
+			$.getJSON('/api/v1/venues?search='+txt, function(d) {
+				$(elm).closest('.live-edit-content').find('.live-edit-suggestions').html(Mustache.render(design,d));
+			});
+		});
+	}
 
 
 	$(document).ready(function() {
@@ -289,6 +387,18 @@ function updateStore(init) {
 		if (!_Store.messageDismissed) {
 			$('.dismissable').fadeIn();
 		}
+
+		//	Editor
+		$('.live-edit-init.initable').click(function(ev) {
+			ev.stopPropagation();
+			if ($(this).hasClass('initable')) {
+				$(this).html('<div class="live-edit-content"><div><input type="text" /></div><div class="live-edit-suggestions"></div></div>');
+			}
+			$(this).find('.live-edit-content').slideDown();
+			liveEditListener();
+
+			$(this).removeClass('initable');			
+		});
 
 		setTimeout(function() {
 			resetTripReceivers();
@@ -312,7 +422,7 @@ function updateStore(init) {
 		evalTripBar();
 	});
 
-}
+
 	updateStore();
 
 /*	Allows dismiss-able popups */
@@ -359,7 +469,12 @@ function setSession(uid,e) {
 		if (d.uid) {
 			_AUTH = true;
 			_UID = d.uid;
+			$(document).ready(function() {
+				$('.auth-visible').show();
+			});
 		}
+		tripReceiverDropdowns();
+		getTrips();			
 	});
 }
 
@@ -401,7 +516,7 @@ function showModal(type) {
 		$('.modal-dialog.stdlogin').hide();
 		$('.modal-dialog.stdlostpassword').hide();		
 	} else if (type == 'lostpassword') {
-		$('.modal-dialog.trips-login').hide();
+		$('.modal-dialog.trips-login, .stdlogin').hide();
 		$('.modal-dialog.trips-register').hide();
 		$('.modal-dialog.lostpassword').show();
 	} else if (type == 'nametrip') {
@@ -420,7 +535,7 @@ function showModal(type) {
 
 //	Sets Gigya data ::> login area
 function onGetAccount(response) {
-	console.log('Gigya:',response);
+
 	if (response.isRegistered) {
 		var nickname = response.profile.nickname;
 		if (!nickname) {
@@ -433,23 +548,25 @@ function onGetAccount(response) {
 		$('.tools .login, .fixed-tools .login').removeClass('hidden').show();
 		$('.toggle-signin').hide();
 		$('.toggle-signout').show();
-		$('.dropdown.login a.dropdown-toggle, .fixed-tools .toggle-signout').html('Sign Out').removeClass('hidden');
+		$('.dropdown.login a.dropdown-toggle, .fixed-tools .toggle-signout').html(nickname).removeClass('hidden');
 
-		setSession(response.UID,response.profile.email)
+		setSession(response.UID,response.profile.email);
+
 	} else {
 		$('.login-status').hide();
 		$('.login-name .toggle-signin').text('Log In');	
 		$('.toggle-signout').hide(); // ('hidden');
 		$('.nonauth-required').show();
 	}
-
+	tripReceiverDropdowns();
+	getTrips();
 }
 
 //	Gigya login callback
 function onLogin(response) {
 	console.log(response);
 	if (response.errorCode > 0) {
-		$('#login-error').text(response.errorMessage + ' : ' + response.errorCode);
+		$('#login-error').text(response.errorMessage);
 		$('.nonauth-required').show();		
 	} else {
 
@@ -465,9 +582,18 @@ function onLogin(response) {
 	    // $('nav li.signin').addClass('hidden');
 
 		$('.tools .signin, .fixed-tools .signin, .toggle-signin').hide();
-		$('.toggle-signout').removeClass('hidden').html('Log Out').show();
+		$('.toggle-signout').removeClass('hidden').html(nickname).show();
 		// $('.dropdown.login a.dropdown-toggle, .fixed-tools .toggle-signin, .login-name').html('Log Out').removeClass('hidden');
+
+		_AUTH = true;
+		var nextStep = $('#signinModal').attr('data-step');
+		if (nextStep && nextStep != "") {
+			setTimeout(function() {
+				$('#'+nextStep).trigger('click');
+			},500);
+		}
 	}
+
 }
 
 //	Gigya register callback
@@ -602,25 +728,6 @@ function evalTripBar() {
 
 }
 
-''
-
-var TripTemplate = '<section class="container directory-alt"><div class=row><div class="col-sm-12 single-toolbar"><ul style=display:none><li class="hidden-xs lightBrown social-label">share<li class=social><a class="sans-bold orange"href="https://twitter.com/home?status=57ea88bcb96ef:%20http://events.sfgate.com/trip/{{guid}}"><i class="fa fa-twitter"></i></a><li class=social><a class="sans-bold orange"href="http://www.facebook.com/sharer.php?u=http://events.sfgate.com.com/trip/{{guid}}"><i class="fa fa-facebook-square"></i></a></ul></div></div>{{#items}}<div class="row mytrip-item-row"><div class="col-sm-12 directory-list mytrip-item"><div class="row directory-item"><div class="col-sm-12 item-container"><div class=row><div class="hidden-xs col-sm-1 directory-marker"><span>{{counter}}</span></div>{{#isEvent}}<div class="directory-pic col-xs-3"><div class="sans-bold event-date vert-center white">Feb 9</div><a href=/wine-event/the-great-grape-study-chardonnayfebruary-9-201758975564d0d32><img alt=""src="/image?method=image.icrop&context=event.yield&w=300&h=200&id=12196&trim=1"></a></div>{{/isEvent}}<div class="col-sm-{{#isEvent}}5{{/isEvent}}{{^isEvent}}8{{/isEvent}} directory-info"><h3 class="brown serif"><a href=/{{#isEvent}}wine-event{{/isEvent}}{{^isEvent}}place{{/isEvent}}/{{element_guid}}>{{{name}}}</a></h3><span style=display:none class=partner-badge></span><h4 class="sans-bold orange">{{neighborhood}}</h4><div class=address><p>{{#street}}{{street}},<br>{{/street}}{{#city}}{{city}},{{/city}} {{#state}}{{state}}{{/state}} {{#zip}}{{zip}}{{/zip}}{{^street}}{{address}}{{/street}}{{#phone}}<br>{{phone}}<br>{{/phone}}<span style=display:none>10AM-5PM</span> <span style=display:none class="orange status">Open</span></div></div><div class="hidden-xs col-sm-3 directory-button"><a class="sans-bold button button-xs bg-red pull-right"onclick="removeTrip({id:\'{{id}}\'{{#package_nid}},packageID:\'{{package_nid}}\'{{/package_nid}}},this)">Remove From Trip</a> <a class="sans-bold button button-xs bg-red trip-receiver"style=display:none data-package-id={{package_id}} data-venue_id={{id}}>Move To Trip</a> <a class="sans-bold orange"href=# style=display:none>Website</a> <a class="sans-bold orange"href=# style=display:none><i class="fa fa-location-arrow"></i> Directions</a></div><div class="col-sm-4 directory-buttons hidden-lg hidden-md hidden-sm"><ul><li><a class="sans-bold button button-xs pull-right bg-lightOrange"onclick="removeTrip({id:\'{{id}}\'{{#package_id}},packageID:\'{{package_id}}\'{{/package_id}}},this)">Remove From Trip</a><li><a class="sans-bold orange"href=#><i class="fa fa-map-o"></i> Map</a></ul></div></div></div></div></div></div>{{/items}}</section>';
-
-var xTripTemplate = '<section class="container directory-alt"><div class="row"><div class="col-sm-12 single-toolbar"><ul><li class="social-label lightBrown hidden-xs">share</li><li class="social"><a href="https://twitter.com/home?status=57ea88bcb96ef:%20http://events.sfgate.com/trip/{{guid}}" class="orange sans-bold"><i class="fa fa-twitter"></i></a></li><li class="social"><a href="http://www.facebook.com/sharer.php?u=http://events.sfgate.com.com/trip/{{guid}}" class="orange sans-bold"><i class="fa fa-facebook-square"></i></a></li></ul></div></div>{{#items}}<div class=row><div class="col-sm-12 directory-list"><div class="row directory-item"><div class="col-sm-12 item-container"><div class=row><div class="hidden-xs col-sm-2 directory-pic"><a href="/place/{{venue_guid}}"><img alt=""src="/image?method=image.icrop&context={{context}}&id={{id}}&w=300&h=-1" style="margin-bottom:5px;"></a></div><div class="col-sm-7 directory-info"><h3 class="brown serif"><a href="/place/{{venue_guid}}">{{{name}}}</a></h3><span style="display:none;" class=partner-badge></span><h4 class="sans-bold orange">{{neighborhood}}</h4><div class=address><p>{{#street}}{{street}},<br>{{/street}}{{#city}}{{city}},{{/city}} {{#state}}{{state}}{{/state}} {{#zip}}{{zip}}{{/zip}}{{#phone}}<br>{{phone}}<br>{{/phone}}<span style="display:none;">10AM-5PM</span> <span class="orange status" style="display:none;">Open</span></div></div><div class="hidden-xs col-sm-3 directory-button"><a onclick="removeTrip({id:\'{{id}}\'{{#package_nid}},packageID:\'{{package_nid}}\'{{/package_nid}}},this)" class="sans-bold bg-lightOrange button button-xs">Remove From Trip</a> <a  class="trip-receiver sans-bold bg-lightOrange button button-xs" data-venue_id="{{id}}" data-package-id="{{package_id}}" style="display:none;">Move To Trip</a> <a href=# class="sans-bold orange" style="display:none;">Website</a> <a href=# class="sans-bold orange" style="display:none;"><i class="fa fa-location-arrow"></i> Directions</a></div><div class="col-sm-4 directory-buttons hidden-lg hidden-md hidden-sm"><ul><li><a onclick="removeTrip({id:\'{{id}}\'{{#package_id}},packageID:\'{{package_id}}\'{{/package_id}}},this)" class="sans-bold bg-lightOrange button button-xs">Remove From Trip</a><li><a href=# class="sans-bold orange"><i class="fa fa-map-o"></i> Map</a></ul></div></div></div></div></div></div>{{/items}}</section>';
-
-var TripsTemplate = "<section class='directory container'><div class='col-sm-12 directory-list'>{{^items}} <h3 style='text-align:center;'>You haven’t created anything yet!</h3> <p>Create your first Trip. Visit the map page and use the filters to sort through over 200 Napa and Sonoma wineries. <p> <p>Make sure you log in or create an account to access and customize The Press Trip Planner: Name and save your trip, add places and events, and access your trip map and driving directions right from your mobile device.</p> {{/items}}{{#items}}<div id=\"my-trip-{{package_id}}\" class=\"directory-item row\"><div class=\"col-xs-9 directory-info mytrips-item\"><h3 class=\"brown serif\"><a href='/my-trip/{{package_guid}}' id='' class='editable-trip-title serif brown ' style='display: inline-block;'>{{package_title}}</a></h3><div class=\"mytrips-meta\"><h4 style='text-align:left;' class=\"hidden-xs orange sans-bold\">{{date}}</h4> <h4>{{package_length}} items</h4></div> <div class=\"mytrips-actions\"><a class='button button-sm bg-clear actions' href='/my-trip/{{package_guid}}'>View Trip</a> <a onclick=\"deleteTrip({{package_id}});\" class='button button-sm bg-red actions'>Remove Trip</a></div><p>{{package_text}}</p><div class=\"hidden-xs address\"><p></div><div class=\"address hidden-lg hidden-md hidden-sm\"><p></div></div><div class=\"hidden-xs col-xs-3 directory-button\">{{#package_id}}<a href='/my-trip/{{package_guid}}'><img src='/image?method=image.icrop&context=package.items&id={{package_id}}&w=600&h=-1&noimg=/partners/thepress/img/thepress-default.png' /></a>{{/package_id}}</div></div>{{/items}}</div></section>";
-
-var o0TripsTemplate = "<section class='directory container'><div class='col-sm-12 directory-list'>{{^items}} <h3 style='text-align:center;'>You haven’t created anything yet!</h3> <p>Create your first Trip. Visit the map page and use the filters to sort through over 200 Napa and Sonoma wineries. <p> <p>Make sure you log in or create an account to access and customize The Press Trip Planner: Name and save your trip, add places and events, and access your trip map and driving directions right from your mobile device.</p> {{/items}}{{#items}}<div id=\"my-trip-{{package_id}}\" class=\"directory-item row\"><div class=\"col-xs-6 directory-info\"><h3 class=\"brown serif\"><a href='/my-trip/{{package_guid}}' id='' class='editable-trip-title serif brown ' style='display: inline-block;'>{{package_title}}</a></h3><h4 style='text-align:left;' class=\"hidden-xs orange sans-bold\">{{date}}</h4><p>{{package_text}}</p><div class=\"hidden-xs address\"><p></div><div class=\"address hidden-lg hidden-md hidden-sm\"><p></div></div><div class=\"hidden-xs col-xs-3 directory-button\">{{#package_id}}<a href='/my-trip/{{package_guid}}'><img src='/image?method=image.icrop&context=package.items&id={{package_id}}&w=600&h=-1&noimg=/partners/thepress/img/thepress-default.png' /></a>{{/package_id}}</div><div class=\" col-xs-4 directory-button\"><a href=/my-trip/{{package_guid}} class=\"sans-bold bg-lightOrange button button-xs\" style=\"display:none\">View Trip</a> <a onclick=\"deleteTrip({{package_id}});\" class=\"sans-bold bxg-lightOrange xbutton bxutton-xs\"><svg width=\"30\" height=\"30\" viewBox=\"0 0 1792 1792\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M1490 1322q0 40-28 68l-136 136q-28 28-68 28t-68-28l-294-294-294 294q-28 28-68 28t-68-28l-136-136q-28-28-28-68t28-68l294-294-294-294q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 294 294-294q28-28 68-28t68 28l136 136q28 28 28 68t-28 68l-294 294 294 294q28 28 28 68z\"></path></svg></a></div></div>{{/items}}</div></section>";
-
-var SponsoredTripTemplate = '{{#items}}<a href="/trip/{{guid}}" class="block sponsored" style="background: url(\'image?method=image.crop&context=package&id={{id}}&w=370&h=240\') center center no-repeat; background-size: cover;">            <div class="block-label white no-accent">Sponsored Content</div><div class="block-label white">{{&neighborhood}}</div><div class="block-content vert-center"><h3 class="white"	>{{&title}}</h3></div></a><div class="block-caption hidden-xs"><p>{{subtitle}}</p></div>{{/items}}';
-
-var SponsoredTripTemplateSmall = '{{#items}}          <a href="/trip/{{guid}}" class="block" style="background: url(\'image?method=image.crop&context=package&id={{id}}&w=370&h=240\') center center no-repeat; background-size: cover;"></a><div class="block-content"><span class="partner-badge"></span><h4 class="sans-bold orange"><a href="/trip/{{guid}}">{{&title}}</a></h4></div>{{/items}}';
-
-var SponsoredStoryTemplateSmall = '{{#items}}          <a href="/story/{{guid}}" class="block" style="background: url(\'image?method=image.icrop&context=stories&id={{id}}&w=370&h=240\') center center no-repeat; background-size: cover;"></a><div class="block-label lightBrown no-accent"><span class="partner-badge"></span></div><div class="block-content"><h4 class="sans-bold orange"><a href="/story/{{guid}}">{{&title}}</a></h4></div>{{/items}}';
-
-var MapItineraryTemplate = '{{#items}}<div class="row itinerary-item ui-sortable-handle"><div class="col-xs-2"><div class="num sans-bold">{{counter}}</div></div><div class="col-xs-8 no-padding"><h4 class="sans-bold olive item-title">{{name}}</h4><p class="address sans black">{{address}}</p></div><div class="col-xs-1 no-padding"><a href="#" onclick="removeTrip({id:{{id}}});updateMapItinerary();" class="remove-item sans-bold lightBeige">×</a></div></div>{{/items}}';
-
-var StoryVenueEventMapTemplate = '{{#items}}<a href="/place/{{guid}}">{{name}}</a>{{/items}}';
 
 
 function initNewTrip() {
@@ -628,6 +735,65 @@ function initNewTrip() {
 	if (_AUTH) {
 		showModal('nametrip');
 	}
+}
+
+function saveModalItemTrip() {
+	var selLength = $('.modal-selection li.selected').size();
+	if (selLength < 1) {
+		alert('Please select a trip');
+		return false;
+	}
+	var ids = $('#tripSelectionModal').attr('data-ids');
+	var type = $('#tripSelectionModal').attr('data-type');
+	var id = $('#tripSelectionModal').attr('data-id');
+	var name = $('#tripSelectionModal').attr('data-name');
+	var tripID = $('.modal-selection li.selected').attr('data-id');
+	var tripName = $('.modal-selection li.selected').attr('data-name');
+	var itemGuid = $('#tripSelectionModal').attr('data-guid');
+	var tripGuid = $('.modal-selection li.selected').attr('data-guid');	
+	$('.modal-confirmation-trip-name').html(tripName);
+	$('.modal-confirmation-venue-name').html(name)
+	$('.modal-confirmation-venue-name').attr('href',itemGuid);
+	$('.modal-confirmation-trip-link').attr('href','/wine/my-trip/'+tripGuid);
+	$('.modal-confirmation-trip-name').attr('href','/wine/my-trip/'+tripGuid);
+	$('.modal-confirmation-venue-name').attr('href','/wine/place/'+itemGuid);
+	$.getJSON('/api.json?method=events.add-item-user-package&id='+tripID+'&type='+type+'&name='+name+'&tid='+id+(ids ? '&ids='+ids : ''), function(d) {
+		$('#tripSelectionModal').modal('hide');
+		$('#tripConfirmationModal').modal('show');
+		$('[data-id="'+type+':'+id+'"]').addClass('intrip');
+		setTimeout(function() {
+			$('#tripConfirmationModal').modal('hide');
+		}, 3000)
+	});
+}
+
+function saveInitModalTrip() {
+	$('.modal-nav').html('Choose Add Trip');
+	var name = $('#tripSelectionModalCreateName').val();
+	$.getJSON('/api.json?method=events.packages-create&name='+name, function(d) {
+		tripReceiverDropdowns(false,false,d.id);
+		cancelInitModalTrip();
+	});	
+}
+
+function cancelInitModalTrip() {
+	$('.modal-nav').html('Choose A Trip');	
+	$('.modal-creation').hide();
+	$('.modal-selection').show();
+
+	$('.modal-selection-create').removeClass('invisible');
+	$('#tripSelectionModalActionsSave').show();
+	$('#tripSelectionModalActionsNewSave, #tripSelectionModalActionsNewCancel').hide();
+}
+
+function initModalTrip() {
+	$('.modal-nav').html('Create New Trip');	
+	$('.modal-creation').show();
+	$('.modal-selection').hide();
+
+	$('.modal-selection-create').addClass('invisible');
+	$('#tripSelectionModalActionsSave').hide();
+	$('#tripSelectionModalActionsNewSave, #tripSelectionModalActionsNewCancel').show();
 }
 
 function createNewTrip() {
@@ -673,11 +839,24 @@ function saveFullTrip() {
 	evalTripBar();
 }
 
+/*
+	Brings in random trips that are featured
+*/
+function getPromotedTrips() {
+	$.getJSON('/api/v1/packages?sponsored=1&',function(d) {
+		$('#my-trip-recommended').html(Mustache.render(SuggestedPackagesTemplate,d));
+	})
+}
+
 function getExistingTrip(p) {
 	$.getJSON('/api.json?method=events.package-user&guid='+p,function(d) {
 		trueCounter = 1;
 		if (d.items) {
 			d.items = d.items.map(function(di) { di.counter = trueCounter; trueCounter++; return di });
+		}
+
+		if (d.items.length < 1) {
+			$('#my-trips-maps-button').show();
 		}
 		$('.header-title h1').text(d.name);
 		$('#trip-description').text(d.description);
@@ -690,10 +869,10 @@ function getExistingTrip(p) {
 function getTrips() {
 
 	$.getJSON('/api.json?method=events.packages-user',function(d) {
-
+		console.log('getting trips')
 		if (d.items != null) {
-		$('#mytrips-info').text(d.items.length+' trip'+(d.items.length > 1 ? 's' : '') );
-	}
+			$('#mytrips-info').text(d.items.length+' trip'+(d.items.length > 1 ? 's' : '') );
+		}
 		$('#mytrips-container').html(Mustache.render(TripsTemplate,d));
 		// $('#mobile-trips-container-trips').html(Mustache.render(TripsTemplate,d));	
 	});
@@ -769,6 +948,10 @@ function moveItemToTrip(el,d) {
 }
 
 /* Adds to either an existing trip or to working trip */
+function addItemTrip(el) {
+	$('.modal-selection ul a li').removeClass('selected');
+	$(el).find('li').toggleClass('selected');
+}
 function addItemToTrip(el,tr) {
 	var tid = $(el).closest('.trip-receiver').attr('data-id');
 	var name = $(el).closest('.trip-receiver').attr('data-name');
@@ -833,7 +1016,15 @@ function deleteTrip(id) {
 
 function cloneTrip(id) {
 	$.getJSON("/api.json?method=events.clone-package&id="+id, function(d) {
-		document.location.href = "/my-trips";
+		
+	});
+}
+
+function createTrip() {
+	var name = $('#newTripName').val();
+	var desc = $('#newTripDescription').val();
+	$.getJSON('/api.json?method=events.packages-create&name='+name+'&description='+desc,function(d) {
+		document.location.href = '/wine/my-trip/'+d.rewrite;
 	});
 }
 
@@ -848,7 +1039,7 @@ function saveTrip() {
     	data: { name: tripName, description: $('#trip-description').val(), id: package },
     	success: function(d) {
     		clearTrip();
-    		document.location.href = '/my-trips';
+    		document.location.href = '/wine/my-trips';
     	}
 
     });
@@ -871,7 +1062,7 @@ function clearTrip() {
 	localStorage.setItem('workingTrip','')	
 	localStorage.setItem('workingTripName','')
 	localStorage.setItem('trips',JSON.stringify([]));
-	location.reload();
+	// location.reload();
 }
 
 function getTrip(tr,tripID) {
@@ -1000,7 +1191,7 @@ function getTrip(tr,tripID) {
 	          '<div class="poi-image" style="background: url(\'/partners/thepress/img/backgrounds/wine-pour.png\') center center no-repeat; background-size: cover;">'+
 	          '</div>'+
 	          '<div class="poi-title">'+
-	            '<h2 class="serif brown"><a href="/place/'+trips[k].guid+'">'+trips[k].name+'</a></h2>'+
+	            '<h2 class="serif brown"><a href="/wine-place/'+trips[k].guid+'">'+trips[k].name+'</a></h2>'+
 	          '</div>'+
 	          '<div class="poi-content">'+
 	            '<a class="sans-bold bg-lightOrange button button-xs" onclick="removeTrip({id:\''+trips[k].id+'\''+(package ? ',packageID:\''+package+'\'' : '')+'},this)">Remove From Trip</a>'+
@@ -1055,7 +1246,7 @@ function getTrip(tr,tripID) {
 	    		d.guid = package;
 	    	}
 	    	tripHTML += Mustache.render(TripTemplate, d);
-
+	    	tripHTML += Mustache.render(SuggestedStoriesTemplate, d);
 	    	$('#my-trip-data').html(tripHTML);
 	    	// tripReceiverDropdowns('left','moveItemToTrip');
 	    	//resetTripReceivers();
@@ -1237,6 +1428,23 @@ function getSponsoredStory() {
 }
 
 $(document).ready(function() {
+
+	// enable trip filtering
+	$('.modal-selection-search input').on('keyup',function() {
+		console.log($(this).val());
+		searchVal = new RegExp($(this).val(),'i');
+		$('.modal-selection ul a').each(function() {
+			var txt = $(this).find('.col-xs-10').text();
+			if (!txt.match(searchVal)) {
+				$(this).addClass('hidden');
+			} else {
+				$(this).removeClass('hidden');
+			}
+			if (!txt || txt === '') {
+				$(this).removeClass('hidden');
+			}
+		});
+	});
 
 	$('.tooltip-container').each(function() {
 		console.log('tooltip');

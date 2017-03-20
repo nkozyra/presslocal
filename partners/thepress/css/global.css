@@ -133,6 +133,7 @@ z-index: 999;
 }
 
 .mytrip-item-row {
+
   padding-bottom: 40px;
 }
 
@@ -463,11 +464,9 @@ background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNv
   display:none !important;
 }
 .fixed-tools .dropdown.login a {
-
     padding: 10px 20px;
     top: 2px;
     position: relative;
-
 }
 .editable {
   border-bottom: 1px dotted #544741;
@@ -1163,9 +1162,7 @@ nav.affix {
   transform: translate3d(0, 0, 0);
   background-color: #fff;
   padding: 10px 0;
-
   min-height: 52px;  
-
 }
 
 .nav-wrapper {
@@ -1307,9 +1304,7 @@ nav.nav-sm .nav-container ul.main-nav li a {
   nav.nav-sm .nav-container ul.main-nav li a {
     padding: 5px 10px;
     letter-spacing: 1px;
-
     font-size: 14px;
-
   }
 }
 
@@ -1467,9 +1462,7 @@ nav.nav-sm .fixed-tools ul li.mytrips a {
 nav.affix .fixed-tools ul li.mytrips,
 nav.nav-sm .fixed-tools ul li.mytrips,  ul li.mytrips {
   line-height: 26px;
-
-	border-left: 1px solid #333;
-
+  border-left: 1px solid #333;
   padding-left: 10px;  
   font-weight: bold;
 }
@@ -1581,12 +1574,13 @@ nav.solid .logo-container .tools ul li.chronicle-small img {
   -webkit-filter: brightness(0%);
 }
 
-@media (max-width: 992px) {
-	nav.affix .fixed-tools ul li.chronicle,
-	nav.nav-sm .fixed-tools ul li.chronicle {
-	  display: none;
-	}
++@media (max-width: 992px) {
+  nav.affix .fixed-tools ul li.chronicle,
+  nav.nav-sm .fixed-tools ul li.chronicle {
+    display: none;
+  }
 }
+
 
 /* Mobile Hamburger Menu Button */
 
@@ -1752,13 +1746,11 @@ nav.solid.affix .nav-container ul.main-nav li a {
   /*margin-top: 15px;*/
   /*border-top: 2px solid rgba(255,255,255,.5);*/
   border-bottom: 2px solid rgba(255,255,255,.5);
-
 }
 
 #mobile-trips-container-trips {
   max-height: 80px;
   overflow-y: scroll;
-
 }
 #mobile-trips-container-trips li {
   padding-top: 10px;
@@ -1799,18 +1791,10 @@ nav.solid.affix .nav-container ul.main-nav li a {
 }
 
 .mobile-dropdown .search-bar {
-
   /* text-align: center; */
   padding: 10px 0px 0px;
   text-align: left;
-
   margin-top: 0;
-  padding: 10px 0px 0px;
-  text-align: left;
-}
-
-.mobile-dropdown .search-bar form {
-  padding: 0px 10px;
 }
 
 .mobile-dropdown .search-bar form {
@@ -1917,18 +1901,6 @@ nav.solid.affix .nav-container ul.main-nav li a {
 
 .mobile-dropdown .login-state .login-state-container .login-status {
   font-size: 12px;
-}
-
-@media (max-width: 768px) {
-  .mobile-dropdown.active {
-	  overflow: scroll;
-    -webkit-overflow-scrolling: touch;
-    padding-bottom: 160px;
-  }
-  .mobile-dropdown .login-state {
-	  position: fixed;
-	  bottom: 0px;
-  }
 }
 
 /*
@@ -3385,7 +3357,6 @@ Global Modules
 /* Directory Header */
 
 section .directory-header,
-
  .container.directory-header {
   padding-top: 80px;
  }
@@ -3396,7 +3367,7 @@ section .directory-header,
     padding-top: 0px;
   }
  }
-
+ 
 
 .directory-header .sub-header {
   text-align: center;
@@ -3770,10 +3741,8 @@ section .directory-header,
 }
 
 .directory-alt .mytrip-item-row:nth-last-of-type(1) .directory-list .directory-item .item-container {
-
   border-bottom: 0;
-
-}
+ }
 
 
 .directory-alt .directory-list .directory-item .item-map {
@@ -4014,7 +3983,14 @@ Sign In Modal
 }
 
 .modal-dialog {
+  width: 100%;
   max-width: 700px;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  transform: translate(-50%, -50%) !important;
+  position: absolute;
+  margin: 0;
 }
 
 .modal-dialog.modal-sm {
@@ -4132,16 +4108,13 @@ Sign In Modal
 }
 
 .modal-backdrop {
-
   z-index: 999999;
 }
 
-
-
 @media (max-width: 768px) {
-  .modal-dialog {}
-  .modal-dialog .modal-content .modal-body {
-	  width: 90%;
+  .modal-dialog {
+    /* top: 170px;
+    margin-top: 75px; */
 
   }
   .modal-dialog .modal-content .modal-body {

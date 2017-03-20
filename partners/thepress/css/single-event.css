@@ -109,6 +109,28 @@ nav.solid .logo-container .tools ul li.search a:hover i {
 }
 
 .header-single .featured-image {
+<<<<<<< HEAD
+  height: auto;
+ }
+ 
+ .header-single.header-two-column .header-details {
+  /*padding-left: 0px;*/
+ }
+ 
+ .header-single.header-two-column .header-details .header-details-meta,
+ .header-single.header-two-column .header-details .header-details-map {
+  padding: 0px;
+ }
+ 
+ .header-single.header-two-column .header-details .header-details-map {
+  padding: 14px 0px;
+  display: none !important;
+ }
+ 
+ .header-single.header-two-column .header-details .header-details-meta .socials {
+  margin-top: 30px;
+ }
+=======
 	height: auto;
 }
 
@@ -129,12 +151,28 @@ nav.solid .logo-container .tools ul li.search a:hover i {
 .header-single.header-two-column .header-details .header-details-meta .socials {
 	margin-top: 30px;
 }
+>>>>>>> origin/master
 
 @media (max-width: 992px) {
   .item, .slide {
     height: 450px !important;
     overflow-y: hidden;
   }
+<<<<<<< HEAD
+
+  .header-single.header-two-column .header-details .header-details-meta,
+  .header-single.header-two-column .header-details .header-details-map {
+    padding: 14px;
+  }
+
+  .header-single.header-two-column .header-details .header-details-meta .toolbar-options {
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    padding: 14px 10px;
+  }
+
+=======
   
   .header-single.header-two-column .header-details .header-details-meta,
 	.header-single.header-two-column .header-details .header-details-map {
@@ -147,6 +185,7 @@ nav.solid .logo-container .tools ul li.search a:hover i {
     right: 10px;
     padding: 14px 10px;
 	}
+>>>>>>> origin/master
 }
 
 @media (max-width: 768px) {
@@ -173,6 +212,20 @@ nav.solid .logo-container .tools ul li.search a:hover i {
     display: inline;
     vertical-align: middle;
   }
+<<<<<<< HEAD
+
+  .header-single.header-two-column .header-details .header-details-meta .toolbar-options {
+    position: relative;
+     top: 0px;
+     padding: 14px 0px;
+  }
+  
+  .header-single.header-two-column .header-details .header-details-meta .toolbar-options ul li:not(.social):not(.social-label) {
+    margin-right: 0px;
+  }
+
+
+=======
   
   .header-single.header-two-column .header-details .header-details-meta .toolbar-options {
 		position: relative;
@@ -183,4 +236,5 @@ nav.solid .logo-container .tools ul li.search a:hover i {
 	.header-single.header-two-column .header-details .header-details-meta .toolbar-options ul li:not(.social):not(.social-label) {
 		margin-right: 0px;
 	}
+>>>>>>> origin/master
 }

@@ -36,7 +36,11 @@ font-family: 'Gza', Georgia, 'Times New Roman', Times, serif;
     padding-left: 20px;
     padding: 30px;
     background-color: #F4F5EC;
+<<<<<<< HEAD
+     margin-top: 30px;
+=======
     margin-top: 30px;
+>>>>>>> origin/master
 }
 .single-content .single-body ul li {
     counter-increment: step-counter;
@@ -49,8 +53,8 @@ font-family: 'Gza', Georgia, 'Times New Roman', Times, serif;
 }
 
 .single-content .single-body ul li:before {
-    content: counter(step-counter);
-    margin-right: 10px;
+    /* content: counter(step-counter);
+    margin-right: 10px; */
     margin-top: -3px;
     float: left;
     color: #FF5B50;
@@ -223,12 +227,21 @@ nav.solid .logo-container .tools ul li.search a:hover i {
 }
 
 .single-content .single-sidebar article h4 {
+<<<<<<< HEAD
+  margin: 24px 0px 12px;
+ }
+ 
+ .single-content .single-sidebar .story-venue-mentions-map {
+  margin-top: 30px;
+ }
+=======
 	margin: 24px 0px 12px;
 }
 
 .single-content .single-sidebar .story-venue-mentions-map {
 	margin-top: 30px;
 }
+>>>>>>> origin/master
 
 /* Related Stories */
 

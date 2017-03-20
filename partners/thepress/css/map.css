@@ -1,8 +1,7 @@
-/*
+  /*
 =======================
 Map
 ======================= */
-
 
 
 
@@ -68,6 +67,10 @@ main {
 
 .map-filters {
   width: 100%;
+<<<<<<< HEAD
+  /* min-width: 900px; */
+=======
+>>>>>>> origin/master
   height: 75px;
   margin-top: 52px;
   position: absolute;
@@ -470,7 +473,7 @@ main {
 }
 
 .hud .hud-winery,
-.hud .hud-trips {
+.hud .hud-trips, .hud-card-details {
   width: 100%;
   transform: translateX(0);
   -webkit-transform: translateX(0);
@@ -482,7 +485,7 @@ main {
 }
 
 .hud .hud-winery.inactive,
-.hud .hud-trips.inactive {
+.hud .hud-trips.inactive, .hud-card-details.inactive {
   height: 1px;
   transform: translateX(-120%);
   -webkit-transform: translateX(-120%);
@@ -499,7 +502,7 @@ main {
 }
 
 .module-tier3-counter {
-background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTEyIDUxMjsiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+LnN0MHtmaWxsOiM5M2E1NTg7fTwvc3R5bGU+PHBhdGggY2xhc3M9InN0MCIgZD0iTTI1OC41LDBDMTQ0LjcsMCw2Miw3OS41LDYyLDE2Ni4xYzAsNTIuNCwyMS43LDgwLjQsNTAuNywxMzEuMUMxNzAuNiwzOTguNiwyNTguNSw1MDcsMjU4LjUsNTA3czg3LjktMTA4LjQsMTQ1LjgtMjA5LjhjMjktNTAuNyw1MC43LTc4LjcsNTAuNy0xMzEuMUM0NTUsNzkuNSwzNzIuMywwLDI1OC41LDAiLz48L3N2Zz4=);
+background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTEyIDUxMjsiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+LnN0MHtmaWxsOiM5M2E1NTg7fTwvc3R5bGU+PHBhdGggY2xhc3M9InN0MCIgZD0iTTI1OC41LDBDMTQ0LjcsMCw2Miw3OS41LDYyLDE2Ni4xYzAsNTIuNCwyMS43LDgwLjQsNTAuNywxMzEuMUMxNzAuNiwzOTguNiwyNTguNSw1MDcsMjU4LjUsNTA3czg3LjktMTA4LjQsMTQ1LjgtMjA5LjhjMjktNTAuNyw1MC43LTc4LjcsNTAuNy0xMzEuMUM0NTUsNzkuNSwzNzIuMywwLDI1OC41LDAiLz48L3N2Zz4=) !important;
     width: 28px;
     height: 28px;
     margin-top: -3px;
@@ -679,7 +682,7 @@ background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNv
   padding: 10px 0 0 0;
 }
 
-.hud .module.tier1 .tier-buttons ul {
+.hud .module.tier1 .tier-buttons ul, #tripSelectionModal ul {
   display: table;
   text-align: left;
   margin-bottom: 5px;
@@ -691,18 +694,18 @@ background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNv
   margin-bottom: 10px;
 }
 
-.hud .module.tier1 .tier-buttons ul li, .hud .module.featured .tier-buttons ul li {
+.hud .module.tier1 .tier-buttons ul li, .hud .module.featured .tier-buttons ul li, #tripSelectionModal ul li {
   list-style: none;
   vertical-align: middle;
   display: inline-block;
   margin-right: 10px;
 }
 
-.hud .module.tier1 .tier-buttons ul li.social i, .hud .module.tier2 .tier-buttons ul li.social i, .hud .module.tier2 .tier-buttons ul li.social i, .hud .module.featured .tier-buttons ul li.social i {
+.hud .module.tier1 .tier-buttons ul li.social i, .hud .module.tier2 .tier-buttons ul li.social i, .hud .module.tier2 .tier-buttons ul li.social i, .hud .module.featured .tier-buttons ul li.social i, #tripSelectionModal ul li.social i {
   font-size: 16px !important;
 }
 
-.hud .module ul li.social {
+.hud .module ul li.social, #tripSelectionModal ul li.social, .hud-card-description-row ul li.social {
   float: right;
     color: #d4d5c8;
     font-weight: bold;
@@ -715,7 +718,7 @@ background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNv
   margin-top: -2px;
 }
 
-.hud .module ul li.book a {
+.hud .module ul li.book a, .hud-card-description-row ul li.book a {
   color: #cccdbe;
 }
 
@@ -727,7 +730,7 @@ background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNv
   color: #544741 !important;
 }
 
-.hud .module ul li.social a {
+.hud .module ul li.social a, #tripSelectionModal ul li.social a, .hud-card-description-row ul li.social a {
   width: 26px;
   height: 26px;
   color: #fff;
@@ -748,7 +751,7 @@ background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNv
 background-color: #82924e;
  }
 
-.hud .module.tier1 .tier-buttons ul li a, .hud .module.featured .tier-buttons ul li a {
+.hud .module.tier1 .tier-buttons ul li a, .hud .module.featured .tier-buttons ul li a, .hud-card-description-row ul li a {
   text-transform: uppercase;
   font-size: 14px;
   vertical-align: middle;
@@ -1259,4 +1262,88 @@ a.editable-click.editable-disabled:hover {
 {
     padding-top: 5px;
     display:inline-block;
+}
+
+
+
+
+
+@media (max-width: 768px) {
+  #map-card-details {
+    height: 100%;
+    background-color: #fff;
+    position: fixed;
+
+  }
+  .hud-card-details-content-map {
+    height: 150px;
+  }
+  .hud-card-details-content {
+    margin-top: 130px;
+ 
+  }
+
+  .map-card-details-dismiss {
+    font-size: 18px;
+    display: inline-block;
+    margin-top: 10px;
+    color: #A49C7E;
+  }
+  .hud-card-details-nav {
+    padding: 10px;
+  }
+  .featured-address, .tier-buttons {
+    display:none;
+  }
+
+  .hud .module.featured {
+    margin-bottom: 0px;
+  }
+  .hud .module.featured {
+    min-height: 200px;
+  }
+
+  .hud .module {
+    min-height: auto;
+  }
+
+  .hud .module.tier2 .tier-title h2  {
+    font-size: 18px;
+  }
+  .hud-card-details-nav {
+    background-color: #F9F9F2;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding: 20px;
+  }
+  .hud-card-details-row, .hud-card-description-row {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #fff;
+    margin: 10px;
+  }
+  .hud-card-description-row ul {
+    display: table;
+    text-align: left;
+    margin-bottom: 5px;
+    width: 100%;
+  }  
+  .hud-card-description-row ul li {
+    list-style: none;
+    vertical-align: middle;
+    display: inline-block;
+    margin-right: 10px;    
+  }  
+  .hud-card-description-row ul li a {
+      text-transform: uppercase;
+    font-size: 14px;
+    vertical-align: middle;
+  }
+  .hud-card-details-row {
+     border-bottom: 1px solid #A49C7E;   
+  }
+  .hud-card-details-row h2 {
+    margin: 0px;
+    font-size: 18px;
+  }
 }

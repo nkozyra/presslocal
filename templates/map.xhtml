@@ -552,10 +552,11 @@ $('#toast').html('Added to <a href="/wine-my-trip">My Trip</a>');
 {{#quicktip}}
 
 <div class="dismiss-container module quick-tip bg-lightYellow">
-  <a onclick="dismissDialog(this);" class="close">x</a>
+  <a onclick="dismissDialog(this);" class="close"></a>
+  <div class="create-account">
   <h5 class="stronger orange">Create an account to start your trip</h5>
-  <p>By signing up for an account, you can create your own wine country trips on The Press: Name and save your trip, add places and events to your trip, and access your trips, map and driving directions right from your mobile device.<br>
-  <br></p>
+  <p>By signing up for an account, you can create your own wine country trips on The Press: Name and save your trip, add places and events to your trip, and access your trips, map and driving directions right from your mobile device.</p>
+  </div>
 </div>
 
 {{/quicktip}}
@@ -620,10 +621,10 @@ $('#toast').html('Added to <a href="/wine-my-trip">My Trip</a>');
           </div>
           <div class="row tier-text hidden-xs">
             <div class="col-xs-6">
-              <p class="sans brown tier-address" style="font-size: 13px;line-height: 1.4em;">{{street}},<br> {{city}}, {{state}} {{zip}}</p>
+              <p class="sans brown tier-address" style="font-size: 13px;line-height: 1.5em;">{{street}},<br> {{city}}, {{state}} {{zip}}</p>
             </div>
             <div class="col-xs-6">
-              <p class="sans-bold brown" style="font-size: 13px;line-height: 1.4em;">Hours Today<br><span class="sans">10:30am - 5:00pm</span></p>
+              <p class="sans-bold brown" style="font-size: 13px;line-height: 1.5em;">Hours Today<br><span class="sans">10:30am - 5:00pm</span></p>
             </div>
           </div>
 

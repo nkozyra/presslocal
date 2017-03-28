@@ -923,7 +923,7 @@ Buttons/Links
   border-radius: 10px;
   text-transform: uppercase;
   font-size: 14px;
-  font-weight: 700px;
+  font-weight: 700;
   display: inline-block;
 }
 
@@ -4094,6 +4094,12 @@ Sign In Modal
 .modal-dialog .modal-content .modal-body input {
   width: 100%;
   padding: 5px;
+  font-size: 14px;
+}
+
+.modal-dialog .modal-content .modal-body div {
+  font-size: 12px;
+  margin-bottom: 10px;
 }
 
 .modal-dialog .modal-content .modal-buttons {
@@ -4102,6 +4108,7 @@ Sign In Modal
 
 .modal-dialog .modal-content .modal-buttons button[type="submit"] {
   border: none;
+  margin-bottom: 10px;
 }
 
 .modal-dialog .modal-content .modal-buttons .forgot-pass {

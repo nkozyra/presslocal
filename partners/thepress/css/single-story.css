@@ -25,12 +25,18 @@ Single Story
   border: none;
   text-align: center;
   line-height: 55px;
-  font-size: 56px;
-
-font-family: 'Gza', Georgia, 'Times New Roman', Times, serif;
-    font-style: normal;
-    font-weight: 400;
+  font-size: 38px;
+  font-family: 'Gza', Georgia, 'Times New Roman', Times, serif;
+  font-style: normal;
+  font-weight: 400;
 }
+  .single-content .single-body blockquote p::before  {
+    content: '"';
+  } 
+  .single-content .single-body blockquote p::after  {
+    content: '"';
+  }  
+
 .single-content .single-body ul {
     list-style: none;
     padding-left: 20px;

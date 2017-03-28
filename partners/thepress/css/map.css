@@ -743,7 +743,7 @@ main {
   width: 26px;
   height: 26px;
   color: #fff;
-  line-height: 25px;
+  line-height: 31px !important;
   display: inline-block;
   border-radius: 50%;
   text-align: center;

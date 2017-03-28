@@ -2882,6 +2882,7 @@ Global Modules
   margin: 0 auto;
   text-align: center;
   z-index: 9999;
+  padding-bottom: 15px;
 }
 
 .three-column .block-content h4 {
@@ -4062,7 +4063,7 @@ Sign In Modal
   text-align: left;
 }
 .modal-dialog.modal-sm .modal-content .modal-body h2 {
-  margin: 0px;
+  margin: 0 0 8px 0;
   font-size: 22px;
 }
 

@@ -3360,7 +3360,7 @@ Global Modules
 
 section .directory-header,
  .container.directory-header {
-  padding-top: 80px;
+  /*padding-top: 80px;*/
  }
  
  @media (max-width: 768px) {

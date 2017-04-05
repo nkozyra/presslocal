@@ -574,7 +574,8 @@ main {
 }
 
 .hud .module.featured .featured-content .featured-meta .featured-address a.phone {
-  color: #93a558;
+  color: #ffffff;
+  font-weight: bold;
 }
 
 .hud .module.featured .tier-buttons {

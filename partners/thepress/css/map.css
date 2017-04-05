@@ -695,6 +695,7 @@ main {
   display: table;
   text-align: left;
   margin-bottom: 5px;
+  width: 100%;
 }
 
 .hud .module.featured .tier-buttons ul {

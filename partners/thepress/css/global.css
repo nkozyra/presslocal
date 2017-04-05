@@ -985,8 +985,8 @@ a:hover, a:active, a:focus {
   font-style: normal;
   font-weight: 400;
   display: inline-block;
-  margin-right: 25px;
-  font-size: 12px;
+  margin-right: 35px;
+  font-size: 18px;
   position: relative;
 }
 
@@ -996,7 +996,7 @@ a:hover, a:active, a:focus {
   font-family: 'europa', Helvetica, Arial, sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 18px;
   position: relative;
   margin-right: 5px;
 }
@@ -4007,22 +4007,22 @@ Sign In Modal
 .modal-nav {
     font-family: 'europa', Helvetica, Arial, sans-serif;
     font-weight: bold;
-    letter-spacing: 4px !important;
+    letter-spacing: 1px !important;
     color: #544741 !important;
     text-transform: uppercase;
-    font-size: 16px;
+    font-size: 16px !important;
     display: inline-block;
 }
 
 .modal-selection-search input {
-      background-size: 18px 18px;
-    background-repeat: no-repeat;
-    background-position: 2px 5px;
-    text-indent: 20px;
-  background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTc5MiIgaGVpZ2h0PSIxNzkyIiB2aWV3Qm94PSIwIDAgMTc5MiAxNzkyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik0xMjE2IDgzMnEwLTE4NS0xMzEuNS0zMTYuNXQtMzE2LjUtMTMxLjUtMzE2LjUgMTMxLjUtMTMxLjUgMzE2LjUgMTMxLjUgMzE2LjUgMzE2LjUgMTMxLjUgMzE2LjUtMTMxLjUgMTMxLjUtMzE2LjV6bTUxMiA4MzJxMCA1Mi0zOCA5MHQtOTAgMzhxLTU0IDAtOTAtMzhsLTM0My0zNDJxLTE3OSAxMjQtMzk5IDEyNC0xNDMgMC0yNzMuNS01NS41dC0yMjUtMTUwLTE1MC0yMjUtNTUuNS0yNzMuNSA1NS41LTI3My41IDE1MC0yMjUgMjI1LTE1MCAyNzMuNS01NS41IDI3My41IDU1LjUgMjI1IDE1MCAxNTAgMjI1IDU1LjUgMjczLjVxMCAyMjAtMTI0IDM5OWwzNDMgMzQzcTM3IDM3IDM3IDkweiIvPjwvc3ZnPg==);
+  background-size: 18px 18px;
+  background-repeat: no-repeat;
+  background-position: 2px 5px;
+  text-indent: 20px;
+  background-image: url("https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-128.png");
   border: none;
-  border-top: 1px solid #333;
-  border-bottom: 1px solid #333;
+  border-top: 1px solid #cccdbe;
+  border-bottom: 1px solid #cccdbe;
   outline: none;
   margin-top: 5px;
 }
@@ -4090,6 +4090,7 @@ Sign In Modal
   width: 60%;
   text-align: center;
   margin: 0 auto;
+  padding: 25px;
 }
 
 .modal-dialog .modal-content .modal-body input {
@@ -4098,10 +4099,19 @@ Sign In Modal
   font-size: 14px;
 }
 
+  .modal-dialog .modal-content .modal-body input::-webkit-input-placeholder {
+    color: #544741;
+  }
+
 .modal-dialog .modal-content .modal-body div {
-  font-size: 12px;
+  font-size: 14px;
   margin-bottom: 10px;
 }
+
+  .modal-dialog .modal-content .modal-body div#tripSelectionModalAddress {
+    width: 60%;
+    margin-top: -30px;
+  }
 
 .modal-dialog .modal-content .modal-buttons {
   padding: 0 15px 15px 15px;
@@ -4427,5 +4437,13 @@ Popovers
 .directory-map {
   display: none;
 }
+
+
+a:hover {
+  cursor: pointer;
+}
+
+
+
 
 
